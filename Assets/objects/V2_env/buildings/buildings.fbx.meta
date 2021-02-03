@@ -3,7 +3,68 @@ guid: 693cdd267e042024db73b4c45b310d80
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 007
+    second: {fileID: 2100000, guid: f3f09abb781180140bbbc0c98fc557b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 010
+    second: {instanceID: 0}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 014
+    second: {fileID: 2100000, guid: 1bd19216385a1d843a05278342ddc13a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 018
+    second: {fileID: 2100000, guid: 4fe0c2b1567de754d8bd6c9389c64562, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 020
+    second: {fileID: 2100000, guid: dcb751443f792d34f8da5a7f51ced4d9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 045
+    second: {instanceID: 0}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 046
+    second: {fileID: 2100000, guid: 205a8f33671838b47bec027563a1a3de, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 055
+    second: {fileID: 2100000, guid: 11b1842914cb34d43a8c5357440b3ebb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.008
+    second: {fileID: -3522955778539423533, guid: 7630e0a809665cf478342adec2091775,
+      type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: building005
+    second: {fileID: 2100000, guid: 23c4e457a9fc74d4b999dafedbe6cf50, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cube049
+    second: {instanceID: 0}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tower
+    second: {instanceID: 0}
   materials:
     materialImportMode: 1
     materialName: 0
