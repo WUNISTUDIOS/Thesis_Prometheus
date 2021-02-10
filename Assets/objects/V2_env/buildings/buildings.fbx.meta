@@ -47,9 +47,34 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: c6a240d0646c20848855e3ed2de4aa94, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Material.008
     second: {fileID: -3522955778539423533, guid: 7630e0a809665cf478342adec2091775,
       type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: eb760c45d435ebc4fb1300e410ecd3cd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: area002
+    second: {fileID: 2100000, guid: d56d1438ac0464048bbaf23ad5d5dfb7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: board
+    second: {fileID: 2100000, guid: 76603cb27ceccf64a88b295f192ead92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: boardpost
+    second: {fileID: 2100000, guid: 25ae5d8003dfc824eba5b9a47890e251, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -60,6 +85,21 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: cube049
     second: {instanceID: 0}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: flatbuilding001
+    second: {fileID: 2100000, guid: bbe2476e26e76774e810f537a96c21fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: queens balcony
+    second: {fileID: 2100000, guid: 2920c41470b72134caca43c2c4e1e9be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: queensplate
+    second: {fileID: 2100000, guid: b748a211cbb74a34695e0ddda6f43cf1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
