@@ -64,7 +64,7 @@ public class BasicAgent : MonoBehaviour
                 Resource.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 Resource.transform.parent = null;
                 Resource.transform.localPosition = CollectionPoint.transform.position + new Vector3(0, 20, 0);
-                Resource.GetComponent<Rigidbody>().useGravity = false;
+                // Resource.GetComponent<Rigidbody>().useGravity = false;
                 Resource.layer = 11;
                 Resource = null;
                 state = "seeking";
