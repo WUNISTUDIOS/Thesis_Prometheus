@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class NavAgentController : MonoBehaviour
 {
-    NavMeshAgent myNavMeshAgent;
+    UnityEngine.AI.NavMeshAgent myNavMeshAgent;
     void Start()
     {
-        myNavMeshAgent = GetComponent<NavMeshAgent>();
+        myNavMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 
     void Update()
