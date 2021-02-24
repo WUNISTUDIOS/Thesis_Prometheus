@@ -9,6 +9,7 @@ TagManager:
   - Light
   - resource
   - collectionpoint
+  - boundary
   layers:
   - Default
   - TransparentFX
@@ -22,8 +23,8 @@ TagManager:
   - Visual Test
   - Agents
   - CollectionBoundary
-  - 
-  - 
+  - grass
+  - obstacle
   - 
   - 
   - 
