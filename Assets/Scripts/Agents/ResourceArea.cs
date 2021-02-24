@@ -34,7 +34,7 @@ public class ResourceArea : MonoBehaviour
         if (resourcesInside <= 0)
         {
             resourcesInside += 5;
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(20);
             SpawnResource();
             SpawnResource();
             SpawnResource();

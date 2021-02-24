@@ -13,6 +13,7 @@ public class NavCollector : MonoBehaviour
     public string state = "seeking";
     public bool carryingObject = false;
 
+    public GameObject SpotLight;
 
     void Start()
     {
@@ -44,6 +45,7 @@ public class NavCollector : MonoBehaviour
 
             myNavMeshAgent.SetDestination(CollectionPoint.transform.position);
 
+            SpotLight.GetComponent<Light>().color = new Color(0, 1, 0.5960785f, 1f);
 
             if (distance < 15)
             {
@@ -55,6 +57,7 @@ public class NavCollector : MonoBehaviour
                 Resource = null;
                 state = "seeking";
                 carryingObject = false;
+                SpotLight.GetComponent<Light>().color = new Color(1f, 1f, 1f, 1f);
             }
         }
 
