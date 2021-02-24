@@ -62,15 +62,15 @@ MonoBehaviour:
       type: 3}
     usePrefabs: 1
     allowIntercollision: 0
-    alignToSurface: 0
+    alignToSurface: 1
     randomizeXRotation: 0
     randomizeYRotation: 1
     randomizeZRotation: 0
     parentContainer: {fileID: 0}
-    density: 1
-    brushSize: 5
-    minScale: 0.5
-    maxScale: 33.71089
+    density: 0.42
+    brushSize: 1.87
+    minScale: 0.001
+    maxScale: 5
     offsetFromPivot: {x: 0, y: 0, z: 0}
     rotOffsetFromPivot: {x: 0, y: 0, z: 0}
     minSlope: 0
