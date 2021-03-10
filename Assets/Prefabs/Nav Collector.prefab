@@ -139,7 +139,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 1.92
   m_Speed: 30
-  m_Acceleration: 300
+  m_Acceleration: 400
   avoidancePriority: 50
   m_AngularSpeed: 2000
   m_StoppingDistance: 0
@@ -166,6 +166,8 @@ MonoBehaviour:
   Resource: {fileID: 0}
   state: seeking
   carryingObject: 0
+  goingToBuildingZone: 0
+  SpotLight: {fileID: 6715987346506741971}
 --- !u!1 &6715987346506741971
 GameObject:
   m_ObjectHideFlags: 0

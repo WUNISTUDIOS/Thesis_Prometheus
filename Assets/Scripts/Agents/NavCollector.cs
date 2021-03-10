@@ -12,17 +12,22 @@ public class NavCollector : MonoBehaviour
 
     public string state = "seeking";
     public bool carryingObject = false;
+    public bool goingToBuildingZone = false;
+
 
     public GameObject SpotLight;
 
     void Start()
     {
         myNavMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        if (CollectionPoint.GetComponent<BuildingZone>())
+        {
+            goingToBuildingZone = true;
+        }
 
     }
     void Update()
     {
-
         if (state == "collecting")
         {
             if (Resource.GetComponent<Resource>().collected)
@@ -36,6 +41,36 @@ public class NavCollector : MonoBehaviour
             Resource = findNearestResource();
 
 
+        }
+        else if (state == "idle")
+        {
+
+            if (CollectionPoint != null && carryingObject)
+            {
+                state = "returning";
+            }
+            else if (!carryingObject)
+            {
+                Resource = findNearestResource();
+
+                if (Resource != null)
+                {
+                    state = "collecting";
+                }
+            }
+            else
+            {
+                // Uncomment to disable idle buzzing
+                // myNavMeshAgent.isStopped = true;
+                // myNavMeshAgent.ResetPath();
+            }
+
+        }
+
+        else if (state == "stop")
+        {
+            myNavMeshAgent.isStopped = true;
+            myNavMeshAgent.ResetPath();
         }
 
         else if (state == "returning")
@@ -54,10 +89,15 @@ public class NavCollector : MonoBehaviour
                 Resource.transform.localPosition = CollectionPoint.transform.position + new Vector3(0, 20, 0);
                 Resource.GetComponent<Rigidbody>().useGravity = false;
                 Resource.layer = 11;
+                if (goingToBuildingZone)
+                {
+                    CollectionPoint.GetComponent<BuildingZone>().IncreaseResource(Resource);
+                }
                 Resource = null;
                 state = "seeking";
                 carryingObject = false;
                 SpotLight.GetComponent<Light>().color = new Color(1f, 1f, 1f, 1f);
+
             }
         }
 
@@ -74,19 +114,7 @@ public class NavCollector : MonoBehaviour
                 state = "idle";
             }
         }
-        else if (state == "idle")
-        {
-            Vector3 direction = (CollectionPoint.transform.position - transform.position).normalized;
-            float distance = Vector3.Distance(CollectionPoint.transform.position, transform.position);
 
-            myNavMeshAgent.SetDestination(CollectionPoint.transform.position);
-            Resource = findNearestResource();
-
-            if (Resource != null)
-            {
-                state = "collecting";
-            }
-        }
     }
 
     private GameObject findNearestResource()
@@ -117,10 +145,18 @@ public class NavCollector : MonoBehaviour
         {
             // if (!other.gameObject.GetComponent<Resource>().collected)
             // {
-            state = "returning";
+            if (CollectionPoint)
+            {
+                state = "returning";
+
+            }
+            else
+            {
+                state = "idle";
+            }
             other.transform.parent = transform;
             // other.transform.localPosition = new Vector3(0, 2, 0);
-            other.transform.localPosition = new Vector3(0, 3.8f, 0);
+            other.transform.localPosition = new Vector3(0, 5f, 0);
             other.rigidbody.constraints = RigidbodyConstraints.FreezePosition;
             other.gameObject.GetComponent<Resource>().collected = true;
             other.gameObject.GetComponent<Resource>().resourceArea.GetComponent<ResourceArea>().DecreaseResource();

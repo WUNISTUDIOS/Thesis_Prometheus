@@ -10,6 +10,7 @@ TagManager:
   - resource
   - collectionpoint
   - boundary
+  - buildingzone
   layers:
   - Default
   - TransparentFX
