@@ -164,7 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollectionPoint: {fileID: 0}
   Resource: {fileID: 0}
-  state: seeking
+  state: idle
   carryingObject: 0
   goingToBuildingZone: 0
   SpotLight: {fileID: 6715987346506741971}

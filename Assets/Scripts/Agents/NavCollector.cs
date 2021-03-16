@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ public class NavCollector : MonoBehaviour
     public GameObject CollectionPoint;
     public GameObject Resource;
 
-    public string state = "seeking";
+    public string state = "idle";
     public bool carryingObject = false;
     public bool goingToBuildingZone = false;
 
@@ -32,13 +32,20 @@ public class NavCollector : MonoBehaviour
         {
             if (Resource.GetComponent<Resource>().collected)
             {
-                state = "seeking";
+                state = "idle";
             }
 
-            // Set destination to resource
-            myNavMeshAgent.SetDestination(Resource.transform.position);
+            if (Resource)
+            {
+                // Set destination to resource
+                myNavMeshAgent.SetDestination(Resource.transform.position);
 
-            Resource = findNearestResource();
+            }
+            else
+            {
+                state = "idle";
+            }
+
 
 
         }
@@ -67,11 +74,6 @@ public class NavCollector : MonoBehaviour
 
         }
 
-        else if (state == "stop")
-        {
-            myNavMeshAgent.isStopped = true;
-            myNavMeshAgent.ResetPath();
-        }
 
         else if (state == "returning")
         {
@@ -94,24 +96,10 @@ public class NavCollector : MonoBehaviour
                     CollectionPoint.GetComponent<BuildingZone>().IncreaseResource(Resource);
                 }
                 Resource = null;
-                state = "seeking";
+                state = "idle";
                 carryingObject = false;
                 SpotLight.GetComponent<Light>().color = new Color(1f, 1f, 1f, 1f);
 
-            }
-        }
-
-        else if (state == "seeking")
-        {
-            Resource = findNearestResource();
-            if (Resource != null)
-            {
-                state = "collecting";
-            }
-
-            if (Resource == null)
-            {
-                state = "idle";
             }
         }
 
@@ -141,10 +129,15 @@ public class NavCollector : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
-        if (other.collider.CompareTag("resource") && !carryingObject && other.collider.gameObject == Resource)
+        if (other.collider.CompareTag("resource") && state == "collecting" && other.collider.gameObject == Resource)
         {
-            // if (!other.gameObject.GetComponent<Resource>().collected)
-            // {
+            other.transform.parent = transform;
+            other.transform.localPosition = new Vector3(0, 5f, 0);
+            other.rigidbody.constraints = RigidbodyConstraints.FreezePosition;
+            other.gameObject.GetComponent<Resource>().collected = true;
+            other.gameObject.GetComponent<Resource>().resourceArea.GetComponent<ResourceArea>().DecreaseResource();
+            carryingObject = true;
+
             if (CollectionPoint)
             {
                 state = "returning";
@@ -154,14 +147,6 @@ public class NavCollector : MonoBehaviour
             {
                 state = "idle";
             }
-            other.transform.parent = transform;
-            // other.transform.localPosition = new Vector3(0, 2, 0);
-            other.transform.localPosition = new Vector3(0, 5f, 0);
-            other.rigidbody.constraints = RigidbodyConstraints.FreezePosition;
-            other.gameObject.GetComponent<Resource>().collected = true;
-            other.gameObject.GetComponent<Resource>().resourceArea.GetComponent<ResourceArea>().DecreaseResource();
-            carryingObject = true;
-            // }
 
         }
     }

@@ -33,7 +33,10 @@ public class FactionDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (buildingZones.Count > 0)
+        {
 
+        }
     }
 
     public void UpdateBuiltZone(GameObject builtZone)
