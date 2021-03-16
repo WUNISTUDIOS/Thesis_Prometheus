@@ -65,6 +65,7 @@ namespace ArchieAndrews.PrefabBrush
         public bool checkLayerForErase = false;
         public bool checkTagForErase = false;
         public bool checkSlopeForErase = false;
+        public bool mustBeSelectedInBrush = false;
 
         public int requiredTagMaskForErase, requiredLayerMaskForErase;
         public float minRequiredSlopeForErase, maxRequiredSlopeForErase;

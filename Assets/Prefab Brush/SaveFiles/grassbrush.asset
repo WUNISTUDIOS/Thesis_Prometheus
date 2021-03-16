@@ -73,6 +73,7 @@ MonoBehaviour:
   checkLayerForErase: 0
   checkTagForErase: 0
   checkSlopeForErase: 0
+  mustBeSelectedInBrush: 0
   requiredTagMaskForErase: 0
   requiredLayerMaskForErase: 0
   minRequiredSlopeForErase: 0

@@ -1,6 +1,6 @@
 ﻿/*
  * 		Prefab Brush+ 
- * 		Version 1.3.7f.1
+ * 		Version 1.3.8
  *		Author: Archie Andrews
  *		www.archieandrews.games
  */
@@ -45,12 +45,14 @@ namespace ArchieAndrews.PrefabBrush
         private bool tempTab = false, tempState = false;
 
         //On Off variables
+        [SerializeField]
         private bool isOn = true;
-        private Texture2D onButton;
-        private Texture2D offButton;
+        private Texture2D onButtonLight;
+        private Texture2D offButtonLight;
+        private Texture2D onButtonDark;
+        private Texture2D offButtonDark;
         private Texture2D buttonIcon;
         private Texture2D icon;
-        private GUIStyle buttonSkin;
 
         //Styles
         private GUIStyle style;
@@ -62,7 +64,7 @@ namespace ArchieAndrews.PrefabBrush
         private const float toggleButtonSize = 20;
         private const int prefabIconMinSize = 64;
         private float prefabIconScaleFactor = 1;
-        private const float spaceing = 5;
+        private const float spacing = 5;
 
         //Prefab mod variables
         private PB_PrefabDisplayType prefabDisplayType;
@@ -104,13 +106,13 @@ namespace ArchieAndrews.PrefabBrush
 
         void OnFocus()
         {
-#if UNITY_2019
 
-            SceneView.duringSceneGui -= this.OnSceneGUI;
-            SceneView.duringSceneGui += this.OnSceneGUI;
-#else
+#if UNITY_2018 || UNITY_2017 || UNITY_5 || UNITY_4
             SceneView.onSceneGUIDelegate -= this.OnSceneGUI;
             SceneView.onSceneGUIDelegate += this.OnSceneGUI;
+#else
+            SceneView.duringSceneGui -= this.OnSceneGUI;
+            SceneView.duringSceneGui += this.OnSceneGUI;
 #endif
         }
 
@@ -124,9 +126,12 @@ namespace ArchieAndrews.PrefabBrush
         private void LoadResources()
         {
             //Load textures for use in UI.
-            onButton = Resources.Load("PB_Button_On") as Texture2D;
-            offButton = Resources.Load("PB_Button_Off") as Texture2D;
-            buttonIcon = Resources.Load("PB_Button_On") as Texture2D;
+            onButtonLight = Resources.Load("L_Button_On") as Texture2D;
+            offButtonLight = Resources.Load("L_Button_Off") as Texture2D;
+            onButtonDark = Resources.Load("D_Button_On") as Texture2D;
+            offButtonDark = Resources.Load("D_Button_Off") as Texture2D;
+
+            buttonIcon = (EditorGUIUtility.isProSkin) ? Resources.Load("D_Button_On") as Texture2D : Resources.Load("L_Button_On") as Texture2D;
 
             icon = Resources.Load("PB_Icon") as Texture2D;
         }
@@ -231,10 +236,7 @@ namespace ArchieAndrews.PrefabBrush
 
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button(buttonIcon, GUI.skin.label))
-            {
-                isOn = !isOn;
-                buttonIcon = (isOn) ? onButton : offButton;
-            }
+                ToggleOnState();
             EditorGUILayout.EndHorizontal();
 
             Repaint();
@@ -336,10 +338,7 @@ namespace ArchieAndrews.PrefabBrush
 
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button(buttonIcon, GUI.skin.label))
-            {
-                isOn = !isOn;
-                buttonIcon = (isOn) ? onButton : offButton;
-            }
+                ToggleOnState();
             EditorGUILayout.EndHorizontal();
 
             Repaint();
@@ -489,13 +488,13 @@ namespace ArchieAndrews.PrefabBrush
         //Draw Prefab Display
         private void DrawPaintType()
         {
-#if UNITY_2017 || UNITY_2018 || UNITY_2019
+#if UNITY_5 || UNITY_4
+        if (activeSave.paintType != PB_PaintType.Surface)
+            activeSave.paintType = PB_PaintType.Surface;
+#else
             EditorGUILayout.BeginVertical("box");
             activeSave.paintType = (PB_PaintType)EditorGUILayout.EnumPopup("Prefab Paint Type", activeSave.paintType);
             EditorGUILayout.EndVertical();
-#else
-        if (activeSave.paintType != PB_PaintType.Surface)
-            activeSave.paintType = PB_PaintType.Surface;
 #endif
         }
 
@@ -518,7 +517,7 @@ namespace ArchieAndrews.PrefabBrush
             prefabDisplayType = (PB_PrefabDisplayType)EditorGUILayout.EnumPopup(string.Format("{0} Display Type", dataTitle), prefabDisplayType);
 
             if (prefabDisplayType == PB_PrefabDisplayType.Icon)
-                prefabIconScaleFactor = EditorGUILayout.Slider(string.Format("{0} Scale", dataTitle), prefabIconScaleFactor, 1, 2);
+                prefabIconScaleFactor = EditorGUILayout.Slider(string.Format("{0} Scale", dataTitle), prefabIconScaleFactor, .7f, 4);
 
             EditorGUILayout.EndVertical();
 
@@ -588,8 +587,10 @@ namespace ArchieAndrews.PrefabBrush
             int coloumnCount = Mathf.FloorToInt((position.width - GetPrefabIconSize()) / GetPrefabIconSize());
             int rowCount = Mathf.CeilToInt(activeSave.prefabData.Count / coloumnCount);
 
+            float height = (rowCount >= 1) ? 2.3f : 1.3f;
+
             EditorGUILayout.BeginVertical(); //Begin the window with all the prefabs in it
-            prefabViewScrollPos = EditorGUILayout.BeginScrollView(prefabViewScrollPos, GUILayout.Height(GetPrefabIconSize() * 1.5f)); //Start the scroll view 
+            prefabViewScrollPos = EditorGUILayout.BeginScrollView(prefabViewScrollPos, GUILayout.Height(GetPrefabIconSize() * height)); //Start the scroll view 
             int id = 0; //This counts how many prefab icons have been built
             for (int y = 0; y <= rowCount; y++)
             {
@@ -651,11 +652,14 @@ namespace ArchieAndrews.PrefabBrush
                 GUI.color = Color.red;
 
                 if (GUI.Button(prefabIconRect, "X"))
+                {
                     activeSave.prefabData.Remove(activeSave.prefabData[id]);
+                    return;
+                }
 
                 GUI.color = Color.blue;
 
-                prefabIconRect.x = prefabIconRect.x + (prefabIconRect.width - deleteButtonSize - toggleButtonSize - spaceing);
+                prefabIconRect.x = prefabIconRect.x + (prefabIconRect.width - deleteButtonSize - toggleButtonSize - spacing);
                 prefabIconRect.height = toggleButtonSize;
                 prefabIconRect.width = toggleButtonSize;
 
@@ -1102,7 +1106,16 @@ namespace ArchieAndrews.PrefabBrush
             switch (activeSave.eraseType)
             {
                 case PB_EraseTypes.PrefabsInBrush:
-                    EditorGUILayout.HelpBox("Only prefabs defined in the save file will be removed", MessageType.Info);
+                    EditorGUILayout.BeginVertical();
+                    GUILayout.Label("Only erase prefabs selected in the brush");
+                    activeSave.mustBeSelectedInBrush = EditorGUILayout.Toggle(activeSave.mustBeSelectedInBrush);
+
+                    if (activeSave.mustBeSelectedInBrush)
+                        EditorGUILayout.HelpBox("Only prefabs defined and selected in the save file will be removed", MessageType.Info);
+                    else
+                        EditorGUILayout.HelpBox("Only prefabs defined in the save file will be removed", MessageType.Info);
+
+                    EditorGUILayout.EndVertical();
                     break;
                 case PB_EraseTypes.PrefabsInBounds:
                     EditorGUILayout.HelpBox("Only prefabs that fit in the bounds will be removed", MessageType.Info);
@@ -1647,17 +1660,21 @@ namespace ArchieAndrews.PrefabBrush
                     for (int i = 0; i < activeSave.prefabData.Count; i++)
                     {
                         bool checkPrefab = false;
-#if UNITY_2018 || UNITY_2019
+#if UNITY_2017 || UNITY_5 || UNITY_4
+                        if (g != null)
+                        checkPrefab = (PrefabUtility.GetPrefabParent(g) == activeSave.prefabData[i].prefab);
+#else
                         if (g != null)
                             checkPrefab = (PrefabUtility.GetCorrespondingObjectFromSource(g) == activeSave.prefabData[i].prefab);
-#else
-                    if(g != null)
-                        checkPrefab = (PrefabUtility.GetPrefabParent(g) == activeSave.prefabData[i].prefab);
 #endif
                         if (checkPrefab)
                         {
-                            GameObject go = g;
-                            Undo.DestroyObjectImmediate(go);
+                            //If the selection check is on then check if selected or run if the selection check is off
+                            if((activeSave.mustBeSelectedInBrush && activeSave.prefabData[i].selected) || !activeSave.mustBeSelectedInBrush)
+                            {
+                                GameObject go = g;
+                                Undo.DestroyObjectImmediate(go);
+                            }
                         }
                     }
                     break;
@@ -1852,7 +1869,9 @@ namespace ArchieAndrews.PrefabBrush
                 objectToMod.transform.localScale = newScale;
             }
 
-#if UNITY_2017 || UNITY_2018 || UNITY_2019
+#if UNITY_4 || UNITY_5
+//Do nothing
+#else
             if (simPhysics)
             {
                 Rigidbody rBody = objectToMod.GetComponent<Rigidbody>();
@@ -1959,10 +1978,7 @@ namespace ArchieAndrews.PrefabBrush
                     tempState = true;
 
                     if (Event.current.keyCode == activeSave.disableBrushHotKey)
-                    {
-                        isOn = !isOn;
-                        buttonIcon = (isOn) ? onButton : offButton;
-                    }
+                        ToggleOnState();
                 }
                 else if (e.type == EventType.KeyUp)
                 {
@@ -1972,10 +1988,7 @@ namespace ArchieAndrews.PrefabBrush
                     tempState = false;
 
                     if (Event.current.keyCode == activeSave.disableBrushHotKey)
-                    {
-                        isOn = !isOn;
-                        buttonIcon = (isOn) ? onButton : offButton;
-                    }
+                        ToggleOnState();
                 }
             }
             else
@@ -1983,12 +1996,15 @@ namespace ArchieAndrews.PrefabBrush
                 if (e.type == EventType.KeyDown)
                 {
                     if (Event.current.keyCode == activeSave.disableBrushHotKey)
-                    {
-                        isOn = !isOn;
-                        buttonIcon = (isOn) ? onButton : offButton;
-                    }
+                        ToggleOnState();
                 }
             }
+        }
+
+        private void ToggleOnState()
+        {
+            isOn = !isOn;
+            buttonIcon = GetButtonTexture();
         }
 #endregion
 
@@ -2157,6 +2173,14 @@ namespace ArchieAndrews.PrefabBrush
                 return;
 
             MountSave();
+        }
+
+        private Texture2D GetButtonTexture()
+        {
+            if (isOn)
+                return (EditorGUIUtility.isProSkin) ? onButtonDark : onButtonLight;
+            else
+                return (EditorGUIUtility.isProSkin) ? offButtonDark : offButtonLight;
         }
 #endregion
 
@@ -2363,10 +2387,10 @@ namespace ArchieAndrews.PrefabBrush
         {
             // When the window is destroyed, remove the delegate
             // so that it will no longer do any drawing.
-#if UNITY_2019
-            SceneView.duringSceneGui -= this.OnSceneGUI;
-#else
+#if UNITY_2017 || UNITY_2018 || UNITY_5 || UNITY_4
             SceneView.onSceneGUIDelegate -= this.OnSceneGUI;
+#else
+            SceneView.duringSceneGui -= this.OnSceneGUI;
 #endif
         }
     }
