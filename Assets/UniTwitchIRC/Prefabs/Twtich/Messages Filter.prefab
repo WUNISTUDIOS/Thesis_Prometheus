@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &140100
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 424510}
+  - component: {fileID: 11432178}
+  - component: {fileID: 11477440}
+  - component: {fileID: 11475696}
+  - component: {fileID: 11461860}
+  m_Layer: 0
+  m_Name: Messages Filter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &424510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140100}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11432178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819780feb48167e45bcdd1f5ed712760, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TwitchChat: {fileID: 0}
+--- !u!114 &11477440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40043dd6993fe24485e6d71d5b61502, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Greetings: []
+--- !u!114 &11475696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31e5aa3842dd721489451780a68af19f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BasicCommands:
+  - m_Message: help
+    m_Description: Gets avaliable help from the CommandsBehaviour list.
+  - m_Message: h
+    m_Description: Gets avaliable help for a specific command.
+  - m_Message: join
+    m_Description: Joins the current game player queue.
+  - m_Message: name
+    m_Description: Change your display name is the current game.
+  m_ParameterizedCommands: []
+  m_NArgunmentCommands: []
+--- !u!114 &11461860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8229a0e0b19f4914cb5f93f87c1af683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HelpCommand: help
+  m_CommandHelp: h

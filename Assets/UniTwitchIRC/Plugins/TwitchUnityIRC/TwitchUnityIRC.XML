@@ -1,0 +1,388 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TwitchUnityIRC</name>
+    </assembly>
+    <members>
+        <member name="T:TwitchUnityIRC.TwitchUnityIRCSettings">
+            <summary>
+            Setting required to manage pools
+            </summary>
+        </member>
+        <member name="P:TwitchUnityIRC.TwitchUnityIRCSettings.Instance">
+            <summary>
+            Access to single instance class
+            </summary>
+        </member>
+        <member name="M:TwitchUnityIRC.TwitchUnityIRCSettings.GetTryIt">
+            <summary>
+            Is this version the free Try It version
+            </summary>
+            <returns>True if this is the Try It version</returns>
+        </member>
+        <member name="M:TwitchUnityIRC.TwitchUnityIRCSettings.GetInEditor">
+            <summary>
+            The project is running in the Unity Editor
+            </summary>
+            <returns>rue if this is the application is running in the Unity Editor</returns>
+        </member>
+        <member name="M:TwitchUnityIRC.TwitchUnityIRCSettings.DoTryIt(System.Action)">
+            <summary>
+            Allows action to be invoked depending on is try it version
+            </summary>
+            <param name="action">The action to preform.  ie The main action to disable the functionality</param>
+        </member>
+        <member name="T:TwitchUnityIRC.Channel.Interaction.TwitchMessenger">
+            <summary>
+            Concrete class providing the functionality for sending messages along the Twitch chat IRC stream.
+            </summary>
+        </member>
+        <member name="P:TwitchUnityIRC.Channel.Interaction.TwitchMessenger.roomVisitor">
+            <summary>
+            Access to the room visitor a class defining the alternate Twitch account name ot nick
+            </summary>        
+        </member>
+        <member name="P:TwitchUnityIRC.Channel.Interaction.TwitchMessenger.channel">
+            <summary>
+            Channel to connect to to monitor messages
+            </summary>
+        </member>
+        <member name="M:TwitchUnityIRC.Channel.Interaction.TwitchMessenger.#ctor">
+            <summary>
+            Constructor
+            <para>Creates object for Twitch chat messenger</para>
+            </summary>
+        </member>
+        <member name="M:TwitchUnityIRC.Channel.Interaction.TwitchMessenger.#ctor(TwitchUnityIRC.Channel.TwitchRoomVisitor,System.String)">
+            <summary>
+            Constructor
+            <para>Creates object for Twitch chat messenger</para>
+            </summary>
+            <param name="roomVisitor">Defines the alternate Twitch account name ot nick</param>
+            <param name="channel">Channel to connect to</param>
+        </member>
+        <member name="M:TwitchUnityIRC.Channel.Interaction.TwitchMessenger.PreparedMessage(System.String)">
+            <summary>
+            Modify message before sending
+            </summary>
+            <param name="message">Message being sent</param>
+            <returns>The modified message</returns>
+        </member>
+        <member name="M:TwitchUnityIRC.Channel.Interaction.TwitchMessenger.PreparedMessage(IRCnect.Channel.Interaction.PendingMessageArgs.Type,System.String)">
+            <summary>
+            Modify message before sending
+            </summary>
+            <param name="type">How to send.</param>
+            <param name="message">Message to send.</param>
+            <returns></returns>
+        </member>
+        <member name="T:TwitchUnityIRC.Channel.Interaction.Native.TwitchCommandID">
+            <summary>
+            Ids for the Native Twitch commands for the server/host.
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Interaction.Native.TwitchCommandID.W">
+            <summary>
+            Format /w
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Interaction.Native.TwitchCommandID.DISCONNECT">
+            <summary>
+            Format /disconnect
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Interaction.Native.TwitchCommandID.MODS">
+            <summary>
+            Format /mods
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Interaction.Native.TwitchCommandID.COLOR">
+            <summary>
+            Format /color {0}
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Interaction.Native.TwitchCommandID.COMMERCIAL">
+            <summary>
+            Format /commercial {0}
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Interaction.Native.TwitchCommandID.MOD">
+            <summary>
+            Format /mod {0}
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Interaction.Native.TwitchCommandID.UNMOD">
+            <summary>
+            Format /unmod {0}
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Interaction.Native.TwitchCommandID.BAN">
+            <summary>
+            Format /ban {0}
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Interaction.Native.TwitchCommandID.UNBAN">
+            <summary>
+            Format /unban {0}
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Interaction.Native.TwitchCommandID.CLEAR">
+            <summary>
+            Format /clear
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Interaction.Native.TwitchCommandID.TIMEOUT">
+            <summary>
+            Format /timeout {0} {1}
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Interaction.Native.TwitchCommandID.SUBSCRIBERS">
+            <summary>
+            Format /subscribers
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Interaction.Native.TwitchCommandID.SUBSCRIBERSOFF">
+            <summary>
+            Format /subscribersoff
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Interaction.Native.TwitchCommandID.SLOW">
+            <summary>
+            Format /slow {0}
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Interaction.Native.TwitchCommandID.SLOWOFF">
+            <summary>
+            Format /slowoff
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Interaction.Native.TwitchCommandID.R9KBETA">
+            <summary>
+            Format /r9kbeta
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Interaction.Native.TwitchCommandID.R9KBETAOFF">
+            <summary>
+            Format /r9kbetaoff
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Interaction.Native.TwitchCommandID.HOST">
+            <summary>
+            Format /host {0}
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Interaction.Native.TwitchCommandID.UNHOST">
+            <summary>
+            Format /unhost {0}
+            </summary>
+        </member>
+        <member name="T:TwitchUnityIRC.Channel.Interaction.Native.TwitchNativeCommands">
+            <summary>
+            Twitch Native commands are those provided by the IRC srever/hosts.
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Interaction.Native.TwitchNativeCommands.Commands">
+            <summary>
+            Basic Twitch chat room commands
+            </summary>
+        </member>
+        <member name="T:TwitchUnityIRC.Channel.TwitchRoomVisitor">
+            <summary>
+            Access to the room visitor a class difining the alternate Twitch account name ot nick
+            </summary>
+        </member>
+        <member name="M:TwitchUnityIRC.Channel.TwitchRoomVisitor.#ctor(System.String,System.IO.StreamWriter)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="nick">The nick to visit join/part the chat room</param>
+            <param name="writer">The stream writer connected to the chat client</param>
+        </member>
+        <member name="M:TwitchUnityIRC.Channel.TwitchRoomVisitor.Capabilities(System.String[])">
+            <summary>
+            Sends capabilities requests to server
+            <para>NOTE: MUST be sent before joining the channel and after Connect is called.</para>
+            </summary>
+            <param name="capReqs">Use one of TwitchProtocol.CAP_REQ in the Utils namespace.
+            <para>Leave without parameters to use TwitchProtocol.CAP_REQ.All</para></param>
+        </member>
+        <member name="T:TwitchUnityIRC.Channel.Monitor.TwitchMonitor">
+            <summary>
+            Monitors the chat room for messages in and out bound
+            </summary>
+        </member>
+        <member name="P:TwitchUnityIRC.Channel.Monitor.TwitchMonitor.client">
+            <summary>
+            The client to connect to the chat room
+            </summary>
+        </member>
+        <member name="M:TwitchUnityIRC.Channel.Monitor.TwitchMonitor.#ctor(TwitchUnityIRC.Connection.TwitchChatClient)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="client">The client to connect to the chat room</param>
+        </member>
+        <member name="M:TwitchUnityIRC.Channel.Monitor.TwitchMonitor.Parse(System.String)">
+            <summary>
+            Parse the recieved message into a data structure
+            </summary>
+            <param name="message">Raw inbound message</param>
+            <returns>A list of parsed filtered message data</returns>
+        </member>
+        <member name="T:TwitchUnityIRC.Channel.Monitor.Replies.Actions.TwitchActionTypes">
+            <summary>
+            Actions that comm in on the message feed that refer to status codes
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Monitor.Replies.Actions.TwitchActionTypes.NUMERIC_353">
+            <summary>
+            Expected code
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Monitor.Replies.Actions.TwitchActionTypes.NUMERIC_372">
+            <summary>
+            Expected code
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Monitor.Replies.Actions.TwitchActionTypes.NUMERIC_375">
+            <summary>
+            Expected code
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Channel.Monitor.Replies.Actions.TwitchActionTypes.All">
+            <summary>
+            All the actions types in one array.
+            </summary>
+        </member>
+        <member name="T:TwitchUnityIRC.Connection.TwitchChatClient">
+            <summary>
+            Chat room connection client
+            </summary>
+        </member>
+        <member name="P:TwitchUnityIRC.Connection.TwitchChatClient.server">
+            <summary>
+            Server to connet to
+            </summary>
+        </member>
+        <member name="M:TwitchUnityIRC.Connection.TwitchChatClient.OpenConnection(System.String,System.Int32)">
+            <summary>
+            Opens a connection to a whisper group chat
+            </summary>
+            <param name="hostname">Host server</param>
+            <param name="port">Port to connect</param>
+        </member>
+        <member name="T:TwitchUnityIRC.Connection.TwitchProtocol">
+            <summary>
+            Helper class containing connection and required IRC protocols.
+            <para>Predifined preformatted strings to interact with specifically with Twitch.tv IRC clients.</para>
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Connection.TwitchProtocol.HOSTNAME">
+            <summary>
+            Host name server
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Connection.TwitchProtocol.SERVER_CHAT">
+            <summary>
+            Chat name server
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Connection.TwitchProtocol.PORT_CHAT">
+            <summary>
+            Twitch chat port
+            </summary>
+        </member>
+        <member name="T:TwitchUnityIRC.Connection.TwitchProtocol.CAP_REQ">
+            <summary>
+            Cap to sent along with the oauth
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Connection.TwitchProtocol.CAP_REQ.MEMBERSHIP">
+            <summary>
+            Request membership capabilities
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Connection.TwitchProtocol.CAP_REQ.COMMANDS">
+            <summary>
+            Request commands capabilities
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Connection.TwitchProtocol.CAP_REQ.TAGS">
+            <summary>
+            Request tags capabilities
+            </summary>
+        </member>
+        <member name="F:TwitchUnityIRC.Connection.TwitchProtocol.CAP_REQ.All">
+            <summary>
+            Request all capabilities
+            </summary>
+        </member>
+        <member name="M:TwitchUnityIRC.Connection.TwitchProtocol.ConnectionStrings(System.String,System.String,System.String[])">
+            <summary>
+            Combines the authentication message
+            </summary>
+            <param name="nick">Nick for connection</param>
+            <param name="oauth">Password</param>
+            <param name="requestCaps">Caps required</param>
+            <returns></returns>
+        </member>
+        <member name="M:TwitchUnityIRC.Connection.TwitchProtocol.GetFormattedPRIVMSG(System.String,System.String,System.String)">
+            <summary>
+            Formats for a private message the normal Twitch protocol
+            </summary>
+            <param name="nick">The the message came from</param>
+            <param name="channel">The channel the message is to</param>
+            <param name="message">The message</param>
+            <returns>The formatted message protocol</returns>
+        </member>
+        <member name="M:TwitchUnityIRC.Connection.TwitchProtocol.GetFormattedPRIVMSG_SHORT(System.String,System.String)">
+            <summary>
+            Formats for a private message the normal Twitch protocol
+            </summary>
+            <param name="channel">The channel the message is to</param>
+            <param name="message">The message</param>
+            <returns>The formatted message protocol</returns>
+        </member>
+        <member name="M:TwitchUnityIRC.Connection.TwitchProtocol.GetFormattedWHISPER(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="nick"></param>
+            <param name="toNick"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TwitchUnityIRC.Workers.TwitchWorker">
+            <summary>
+            Background worker for handling the client connection on a thread
+            </summary>
+        </member>
+        <member name="P:TwitchUnityIRC.Workers.TwitchWorker.IsRunning">
+            <summary>
+            Is the worker running or the loop is stopped
+            </summary>
+        </member>
+        <member name="M:TwitchUnityIRC.Workers.TwitchWorker.#ctor(System.Action)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="toExecute">Action to execute in the loop</param>
+        </member>
+        <member name="M:TwitchUnityIRC.Workers.TwitchWorker.Stop">
+            <summary>
+            Stop the loop and abort the thread
+            </summary>
+        </member>
+        <member name="M:TwitchUnityIRC.Workers.TwitchWorker.Run">
+            <summary>
+            Starts the loop in the thread
+            </summary>
+        </member>
+        <member name="M:TwitchUnityIRC.Workers.TwitchWorker.Runner">
+            <summary>
+            Override to implement the loop.
+            <para>IsRunning must be set to true here.</para>
+            </summary>
+        </member>
+    </members>
+</doc>

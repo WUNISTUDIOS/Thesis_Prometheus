@@ -1,0 +1,475 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TwitchConnectTv</name>
+    </assembly>
+    <members>
+        <member name="T:TwitchConnectTv.Consts">
+            <summary>
+            Constants to hale values
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.Consts.API_DEPRECATED_FROM_V3_TO_V5">
+            <summary>
+            Waning/error message for api deprecation
+            </summary>
+        </member>
+        <member name="T:TwitchConnectTv.Broadcaster">
+            <summary>
+            Active channel broadcaster
+            <para>The channel and its owner</para>
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.Broadcaster.API_DEPRECATED_FROM_V3_TO_V5">
+            <summary>
+            Waning/error message for api deprecation
+            </summary>
+        </member>
+        <member name="P:TwitchConnectTv.Broadcaster.channel">
+            <summary>
+            Channel name/title
+            </summary>
+        </member>
+        <member name="P:TwitchConnectTv.Broadcaster.url">
+            <summary>
+            URL formats for this channel
+            </summary>
+        </member>
+        <member name="T:TwitchConnectTv.Broadcaster.ResultParsed">
+            <summary>
+            Delegate to return rquests when complete
+            </summary>
+            <param name="result">Raw object parsed</param>
+        </member>
+        <member name="T:TwitchConnectTv.Broadcaster.SenderResultParsed">
+            <summary>
+            Delegate to return rquests when complete with Broascaster as sender
+            </summary>
+            <param name="broadcaster">Broadcaster for the channel</param>
+            <param name="result">Raw object parsed</param>
+        </member>
+        <member name="E:TwitchConnectTv.Broadcaster.OnResultParsed">
+            <summary>
+            Event invoked when request is parsed
+            </summary>
+        </member>
+        <member name="E:TwitchConnectTv.Broadcaster.OnSenderResultParsed">
+            <summary>
+            Event invoked when request is parsed with Broascaster as sender
+            </summary>
+        </member>
+        <member name="M:TwitchConnectTv.Broadcaster.#ctor(System.String)">
+            <summary>
+            Constructor
+            <para>Creates a new Broadcaster object</para>
+            </summary>
+            <param name="channel">Channel to use for this Broadcaster object</param>
+        </member>
+        <member name="M:TwitchConnectTv.Broadcaster.#ctor(System.String,System.String)">
+            <summary>
+            Constructor
+            <para>Creates a new Broadcaster object</para>
+            </summary>
+            <param name="channel">Channel to use for this Broadcaster object</param>
+            <param name="clientId">Your oauth client_id for aouth access</param>
+        </member>
+        <member name="M:TwitchConnectTv.Broadcaster.ParseJson``1(System.String)">
+            <summary>
+            Parses the JSON text into a data structure format
+            </summary>
+            <typeparam name="T">Type of data structure to parse JSON</typeparam>
+            <param name="json">JSON text to parse</param>
+            <returns>Type safe parsed JSON data</returns>
+        </member>
+        <member name="M:TwitchConnectTv.Broadcaster.ParseJson``1(System.IO.Stream)">
+            <summary>
+            Parses the JSON stream into a data structure format
+            </summary>
+            <typeparam name="T">Type of data structure to parse JSON</typeparam>
+            <param name="stream">Stream to parse</param>
+            <returns>Type safe parsed JSON data</returns>
+        </member>
+        <member name="M:TwitchConnectTv.Broadcaster.MakeHttpWebRequest``1(System.String)">
+            <summary>
+            Makes an HTTP Request to get JSON
+            </summary>
+            <typeparam name="T">Type of data structure to parse JSON</typeparam>
+            <param name="url">Url to make the request to get the JSON</param>
+            <returns>Type safe parsed JSON data</returns>
+        </member>
+        <member name="M:TwitchConnectTv.Broadcaster.ParseJsonIsFollower(System.String)">
+            <summary>
+            Parses the JSON text into a IsFollower data structure format
+            </summary>
+            <param name="json">JSON text to parse</param>
+            <returns>Type safe IsFollower parsed JSON data</returns>
+        </member>
+        <member name="M:TwitchConnectTv.Broadcaster.ParseJsonFollowers(System.String)">
+            <summary>
+            Parses the JSON text into a Followers data structure format
+            </summary>
+            <param name="json">JSON text to parse</param>
+            <returns>Type safe Followers parsed JSON data</returns>
+        </member>
+        <member name="M:TwitchConnectTv.Broadcaster.ParseJsonStreams(System.String)">
+            <summary>
+            Parses the JSON text into a Streams data structure format
+            </summary>
+            <param name="json">JSON text to parse</param>
+            <returns>Type safe Streams parsed JSON data</returns>
+        </member>
+        <member name="M:TwitchConnectTv.Broadcaster.ParseJsonChatters(System.String)">
+            <summary>
+            Parses the JSON text into a Chatters data structure format
+            </summary>
+            <param name="json">JSON text to parse</param>
+            <returns>Type safe Chatters parsed JSON data</returns>
+        </member>
+        <member name="M:TwitchConnectTv.Broadcaster.RequestedResultParsed``1(``0)">
+            <summary>
+            Invokes request results
+            </summary>
+            <typeparam name="T">Type of data structure to parse JSON</typeparam>
+            <param name="result">The result from the JSON request</param>
+            <returns>Type safe parsed JSON data</returns>
+        </member>
+        <member name="T:TwitchConnectTv.TwitchTv">
+            <summary>
+            Data structures to hold JSON data from URL requests
+            </summary>
+        </member>
+        <member name="T:TwitchConnectTv.TwitchTv.API">
+            <summary>
+            Data structures to hold JSON data from URL Twitch API requests
+            </summary>
+        </member>
+        <member name="T:TwitchConnectTv.TwitchTv.API.Streams">
+            <summary>
+            Data structures to hold JSON data from URL Stream requests
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.API.Streams.stream">
+            <summary>
+            Stream requested
+            </summary>
+        </member>
+        <member name="T:TwitchConnectTv.TwitchTv.API.Streams.Stream">
+            <summary>
+            Stream requested, viewers and channel
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.API.Streams.Stream.viewers">
+            <summary>
+            Viewers of the current channel
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.API.Streams.Stream.channel">
+            <summary>
+            Channel for this stream
+            </summary>
+        </member>
+        <member name="T:TwitchConnectTv.TwitchTv.API.Streams.Channel">
+            <summary>
+            Channel request, followers and views
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.API.Streams.Channel.followers">
+            <summary>
+            Followers of this channel
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.API.Streams.Channel.views">
+            <summary>
+            Views for this channel
+            </summary>
+        </member>
+        <member name="T:TwitchConnectTv.TwitchTv.API.Followers">
+            <summary>
+            Data structures to hold JSON data from URL Followers requests
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.API.Followers._total">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.API.Followers.follows">
+            <summary>
+            Current followers list
+            </summary>
+        </member>
+        <member name="T:TwitchConnectTv.TwitchTv.API.Followers.Follows">
+            <summary>
+            Followers, users name
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.API.Followers.Follows.notifications">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.API.Followers.Follows.user">
+            <summary>
+            User name for the nick/follower
+            </summary>
+        </member>
+        <member name="T:TwitchConnectTv.TwitchTv.API.Followers.User">
+            <summary>
+            User for a channel
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.API.Followers.User._id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.API.Followers.User.name">
+            <summary>
+            Name or Nick for the channel
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.API.Followers.User.display_name">
+            <summary>
+            Display name if any
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.API.Followers.User.type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.API.Followers.User.bio">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.API.Followers.User.created_at">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.API.Followers.User.updated_at">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.API.Followers.User.logo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:TwitchConnectTv.TwitchTv.API.IsFollower">
+            <summary>
+            Data structures to hold JSON data from URL User is a Follower requests
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.API.IsFollower.error">
+            <summary>
+            Request reports an error
+            <para>Most reasonable error: User is not a follower</para>
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.API.IsFollower.status">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.API.IsFollower.message">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:TwitchConnectTv.TwitchTv.API.IsFollower.Confirmed">
+            <summary>
+            User is a confirmes follower
+            </summary>
+            <returns>True is user is a follower False otherwiae</returns>
+        </member>
+        <member name="T:TwitchConnectTv.TwitchTv.TMI">
+            <summary>
+            Data structures to hold JSON data from URL Twitch TMI requests
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.TMI.chatter_count">
+            <summary>
+            Current amount or viewers in the chat room
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.TMI.chatters">
+            <summary>
+            Chatters for the chat room
+            </summary>
+        </member>
+        <member name="T:TwitchConnectTv.TwitchTv.TMI.Chatters">
+            <summary>
+            Chatters for the chat room
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.TMI.Chatters.moderators">
+            <summary>
+            Chatters with moderator status
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.TMI.Chatters.viewers">
+            <summary>
+            Chatters with viewers status
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.TMI.Chatters.staff">
+            <summary>
+            Chatters with staff status
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.TMI.Chatters.admins">
+            <summary>
+            Chatters with admins status
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchTv.TMI.Chatters.global_mods">
+            <summary>
+            Chatters with global_mods status
+            </summary>
+        </member>
+        <member name="T:TwitchConnectTv.TwitchURI">
+            <summary>
+            Twitch API and TMI URL formated string class
+            </summary>
+        </member>
+        <member name="T:TwitchConnectTv.TwitchURI.UriFormats">
+            <summary>
+            Formatted for specific URLs
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchURI.UriFormats.STREAMS">
+            <summary>
+            Channel stream information URL format
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchURI.UriFormats.CHATTERS">
+            <summary>
+            Channel chatters/viewers information URL format
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchURI.UriFormats.FOLLOWS">
+            <summary>
+            Channel followers information URL format
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchURI.UriFormats.SUBSCRIPTIONS">
+            <summary>
+            Channel subscriptions information URL format
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchURI.UriFormats.ISFOLLOWER">
+            <summary>
+            Is chatter/viewer a follower URL format
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchURI.UriFormats.ISSUBSCRIBER">
+            <summary>
+            Is chatter/viewer a subscriber URL format
+            </summary>
+        </member>
+        <member name="M:TwitchConnectTv.TwitchURI.UriFormats.AttachClientId(System.String,System.String)">
+            <summary>
+            Creates a url to twitch api including the client id
+            </summary>
+            <param name="uri"></param>
+            <param name="clientId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TwitchConnectTv.TwitchURI.FormattedURL">
+            <summary>
+            URLs in a preformatted string ready to use
+            </summary>
+        </member>
+        <member name="F:TwitchConnectTv.TwitchURI.FormattedURL.API_DEPRECATED_FROM_V3_TO_V5">
+            <summary>
+            Waning/error message for api deprecation
+            </summary>
+        </member>
+        <member name="P:TwitchConnectTv.TwitchURI.FormattedURL.channel">
+            <summary>
+            The channel for the URL queries
+            </summary>
+        </member>
+        <member name="P:TwitchConnectTv.TwitchURI.FormattedURL.clientId">
+            <summary>
+            Your oauth client_id for aouth access
+            </summary>
+        </member>
+        <member name="M:TwitchConnectTv.TwitchURI.FormattedURL.#ctor(System.String)">
+            <summary>
+            Constructor
+            <para>Channel name</para>
+            </summary>
+            <param name="channel"></param>
+        </member>
+        <member name="M:TwitchConnectTv.TwitchURI.FormattedURL.#ctor(System.String,System.String)">
+            <summary>
+            Constructor
+            <para>Channel name</para>
+            </summary>
+            <param name="channel"></param>
+            <param name="clientId">Your oauth client_id for aouth access</param>
+        </member>
+        <member name="P:TwitchConnectTv.TwitchURI.FormattedURL.follows">
+            <summary>
+            URL for follows, if the viewer followes the channel
+            </summary>
+        </member>
+        <member name="P:TwitchConnectTv.TwitchURI.FormattedURL.subscriptions">
+            <summary>
+            URL for subscriptions, if the viewer subscribes the channel
+            </summary>
+        </member>
+        <member name="P:TwitchConnectTv.TwitchURI.FormattedURL.streams">
+            <summary>
+            URL for the channel stream information
+            </summary>
+        </member>
+        <member name="P:TwitchConnectTv.TwitchURI.FormattedURL.chatters">
+            <summary>
+            URL to get the chatters/viewers currently in the chat room
+            </summary>
+        </member>
+        <member name="M:TwitchConnectTv.TwitchURI.FormattedURL.GetIsFollowerUrl(System.String)">
+            <summary>
+            Gets the formatted url for a viewer to confirm that they are a follower
+            </summary>
+            <param name="nick">The viewer/chatter twitch account name</param>
+            <returns>The formatted url for user follows channels</returns>
+        </member>
+        <member name="M:TwitchConnectTv.TwitchURI.FormattedURL.GetIsSubscriberUrl(System.String)">
+            <summary>
+            Gets the formatted url for a viewer to confirm that they are a subscriber
+            </summary>
+            <param name="nick">The viewer/chatter twitch account name</param>
+            <returns>The formatted url for user follows channels</returns>
+        </member>
+        <member name="M:TwitchConnectTv.TwitchURI.ParseJson``1(System.IO.Stream)">
+            <summary>
+            Parses the JSON stream into a data structure format
+            </summary>
+            <typeparam name="T">Type of data structure to parse JSON</typeparam>
+            <param name="stream">Stream to parse</param>
+            <returns>Type safe parsed JSON data</returns>
+        </member>
+        <member name="M:TwitchConnectTv.TwitchURI.ParseJson``1(System.String)">
+            <summary>
+            Parses the JSON text into a data structure format
+            </summary>
+            <typeparam name="T">Type of data structure to parse JSON</typeparam>
+            <param name="json">JSON text to parse</param>
+            <returns>Type safe parsed JSON data</returns>
+        </member>
+        <member name="M:TwitchConnectTv.TwitchURI.MakeHttpWebRequest``1(System.String)">
+            <summary>
+            Makes an HTTP Request to get JSON
+            </summary>
+            <typeparam name="T">Type of data structure to parse JSON</typeparam>
+            <param name="url">Url to make the request to get the JSON</param>
+            <returns>Type safe parsed JSON data</returns>
+        </member>
+    </members>
+</doc>
