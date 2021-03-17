@@ -11,7 +11,7 @@ public class SupplyZone : MonoBehaviour
     {
         Resource.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         Resource.transform.parent = null;
-        Resource.transform.localPosition = transform.position + new Vector3(0, 20, 0);
+        Resource.transform.localPosition = transform.position + new Vector3(0, 5, 0);
         Resource.GetComponent<Rigidbody>().useGravity = false;
         Resource.layer = 11;
         resourceObjects.Add(Resource);

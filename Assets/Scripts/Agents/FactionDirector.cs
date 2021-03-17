@@ -54,7 +54,7 @@ public class FactionDirector : MonoBehaviour
         OrderAgentsToBuildNext();
 
         // supplyZone.GetComponent<SupplyZone>().resourceObjects.Count > 30 && 
-        if (buildingZones.Count <= 0)
+        if (supplyZone.GetComponent<SupplyZone>().resourceObjects.Count >= 0 && buildingZones.Count <= 0)
         {
             PlaceNewBuildingZone();
         }
