@@ -23,6 +23,12 @@ public class BuildingZone : MonoBehaviour
     {
         var buildingResources = Resources.LoadAll("correctBuildings", typeof(GameObject));
         buildingPrefab = buildingResources[Random.Range(0, buildingResources.Length)] as GameObject;
+
+        // Later
+        // var bounds = buildingPrefab.GetComponent<Renderer>().bounds;
+        // transform.localScale = bounds.size;
+        // transform.position += new Vector3(0, bounds.size.y / 2, 0);
+
     }
 
     void Update()
@@ -66,7 +72,7 @@ public class BuildingZone : MonoBehaviour
                 bounds.Encapsulate(renderer.bounds);
             }
         }
-        building = Instantiate(buildingPrefab, transform.position + new Vector3(0, bounds.size.y, 0) / 2, Quaternion.Euler(Vector3.zero));
+        building = Instantiate(buildingPrefab, transform.position + new Vector3(0, bounds.size.y, 0) / 2, transform.rotation);
         GameObject.Find("Faction Director").GetComponent<FactionDirector>().UpdateBuiltZone(gameObject);
 
 

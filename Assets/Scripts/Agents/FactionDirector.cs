@@ -7,6 +7,8 @@ public class FactionDirector : MonoBehaviour
 {
     public GameObject agentPrefab;
 
+    public GameObject buildingZonePrefab;
+
     public List<GameObject> agents;
 
     public List<GameObject> buildingZones;
@@ -21,6 +23,14 @@ public class FactionDirector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+
+        int newBuildings = 3;
+
+        for (int i = 0; i < newBuildings; i++)
+        {
+            PlaceNewBuildingZone();
+        }
         // Will probably need to add a check for if the building is already built later
         buildingZones = new List<GameObject>(GameObject.FindGameObjectsWithTag("buildingzone"));
         for (int i = 0; i < NumOfAgents; i++)
@@ -32,6 +42,9 @@ public class FactionDirector : MonoBehaviour
             agents.Add(newAgent);
 
         }
+
+
+
     }
 
     // Update is called once per frame
@@ -40,8 +53,46 @@ public class FactionDirector : MonoBehaviour
         UpdateBuildingList();
         OrderAgentsToBuildNext();
 
+        // supplyZone.GetComponent<SupplyZone>().resourceObjects.Count > 30 && 
+        if (buildingZones.Count <= 0)
+        {
+            PlaceNewBuildingZone();
+        }
     }
 
+    public void PlaceNewBuildingZone()
+    {
+        var buildingPlacementFound = false;
+        LayerMask firstMask = LayerMask.GetMask("terrain");
+        RaycastHit hit;
+        int placementTries = 0;
+        float x = 0;
+        float z = 0;
+        while (!buildingPlacementFound && placementTries < 100)
+        {
+            if (Physics.Raycast(transform.position + new Vector3(x, 200, z), transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, firstMask))
+            {
+                Debug.DrawRay(transform.position + new Vector3(x, 200, z), transform.TransformDirection(Vector3.down) * hit.distance, Color.yellow);
+                // Building floats 2.2 units up for some reason 
+                LayerMask mask = ~LayerMask.GetMask("terrain");
+                Collider[] hitColliders = Physics.OverlapBox(hit.point, buildingZonePrefab.GetComponent<Renderer>().bounds.size, Quaternion.FromToRotation(Vector3.up, hit.normal), mask);
+                if (hitColliders.Length > 0)
+                {
+                    Debug.Log("try again");
+                    x += Random.Range(-20, 20f);
+                    z += Random.Range(-20, 20f);
+                }
+                else
+                {
+                    var building = Instantiate(buildingZonePrefab, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal) * Quaternion.Euler(0, Random.Range(0f, 360f), 0));
+                    Debug.Log("success");
+                    buildingPlacementFound = true;
+                }
+
+            }
+            placementTries++;
+        }
+    }
     public void UpdateBuiltZone(GameObject builtZone)
     {
         buildingZones.Remove(builtZone);

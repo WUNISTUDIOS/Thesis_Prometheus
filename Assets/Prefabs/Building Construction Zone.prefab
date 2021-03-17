@@ -478,7 +478,7 @@ GameObject:
   - component: {fileID: 1186535447476074394}
   - component: {fileID: 6787857041902542353}
   - component: {fileID: 3882251425406625357}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Building Construction Zone
   m_TagString: buildingzone
   m_Icon: {fileID: 0}
