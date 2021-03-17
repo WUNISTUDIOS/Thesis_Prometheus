@@ -45,6 +45,14 @@ public class ResourceArea : MonoBehaviour
 
     }
 
+    public void feed()
+    {
+        SpawnResource();
+        SpawnResource();
+        SpawnResource();
+        SpawnResource();
+        SpawnResource();
+    }
     private void SpawnResource()
     {
         var resource = Instantiate(ResourcePrefab, new Vector3(Random.Range(transform.position.x - transform.localScale.x / 2, transform.position.x + transform.localScale.x / 2), Random.Range(transform.position.y - transform.localScale.y / 2, transform.position.y + transform.localScale.y / 2), Random.Range(transform.position.z - transform.localScale.z / 2, transform.position.z + transform.localScale.z / 2)), Quaternion.identity);
