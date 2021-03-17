@@ -8,6 +8,8 @@ public class ResourceArea : MonoBehaviour
 
     private int resourcesInside = 10;
 
+    public float respawnTime = 20f;
+
     public GameObject ResourcePrefab;
     void Start()
     {
@@ -34,7 +36,7 @@ public class ResourceArea : MonoBehaviour
         if (resourcesInside <= 0)
         {
             resourcesInside += 5;
-            yield return new WaitForSeconds(20);
+            yield return new WaitForSeconds(respawnTime);
             SpawnResource();
             SpawnResource();
             SpawnResource();

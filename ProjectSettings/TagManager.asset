@@ -10,6 +10,8 @@ TagManager:
   - resource
   - collectionpoint
   - boundary
+  - buildingzone
+  - agent
   layers:
   - Default
   - TransparentFX
@@ -25,8 +27,8 @@ TagManager:
   - CollectionBoundary
   - grass
   - obstacle
-  - 
-  - 
+  - buildingzone
+  - terrain
   - 
   - 
   - 
