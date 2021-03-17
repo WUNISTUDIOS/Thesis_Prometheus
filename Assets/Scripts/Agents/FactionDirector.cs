@@ -100,13 +100,13 @@ public class FactionDirector : MonoBehaviour
         OrderAgentsToBuildNext();
 
         // Destroy buildings test 
-        if (completedBuildingZones.Count >= 10)
-        {
-            foreach (GameObject building in completedBuildingZones)
-            {
-                building.GetComponent<BuildingZone>().DestroyBuilding();
-            }
-        }
+        // if (completedBuildingZones.Count >= 10)
+        // {
+        //     foreach (GameObject building in completedBuildingZones)
+        //     {
+        //         building.GetComponent<BuildingZone>().DestroyBuilding();
+        //     }
+        // }
     }
 
     public void UpdateBuildingList()
