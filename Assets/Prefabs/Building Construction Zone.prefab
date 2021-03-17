@@ -577,7 +577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceObjects: []
-  resourcesNeeded: 10
+  resourcesNeeded: 3
   buildingPrefab: {fileID: -927199367670048503, guid: cd881eb42723e73419c1b8059f825535,
     type: 3}
   building: {fileID: 0}

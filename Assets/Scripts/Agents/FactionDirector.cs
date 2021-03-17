@@ -35,7 +35,7 @@ public class FactionDirector : MonoBehaviour
         buildingZones = new List<GameObject>(GameObject.FindGameObjectsWithTag("buildingzone"));
         for (int i = 0; i < NumOfAgents; i++)
         {
-            var newAgent = Instantiate(agentPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            var newAgent = Instantiate(agentPrefab, transform.position, Quaternion.identity);
             newAgent.GetComponent<NavCollector>().CollectionPoint = buildingZones[0];
             newAgent.GetComponent<NavCollector>().supplyZone = supplyZone;
             newAgent.GetComponent<NavMeshAgent>().speed = Random.Range(70f, 120f);
