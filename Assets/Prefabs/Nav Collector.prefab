@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5220840187662330934}
   m_Layer: 10
   m_Name: Nav Collector
-  m_TagString: Untagged
+  m_TagString: agent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   Resource: {fileID: 0}
   state: idle
   carryingObject: 0
-  goingToBuildingZone: 0
+  supplyZone: {fileID: 0}
   SpotLight: {fileID: 6715987346506741971}
 --- !u!1 &6715987346506741971
 GameObject:

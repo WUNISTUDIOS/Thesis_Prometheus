@@ -11,6 +11,7 @@ TagManager:
   - collectionpoint
   - boundary
   - buildingzone
+  - agent
   layers:
   - Default
   - TransparentFX
