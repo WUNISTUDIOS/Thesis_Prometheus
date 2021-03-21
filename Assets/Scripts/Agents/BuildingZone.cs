@@ -21,7 +21,7 @@ public class BuildingZone : MonoBehaviour
 
     void Start()
     {
-        var buildingResources = Resources.LoadAll("correctBuildings", typeof(GameObject));
+        var buildingResources = Resources.LoadAll("New Origin Buildings", typeof(GameObject));
         buildingPrefab = buildingResources[Random.Range(0, buildingResources.Length)] as GameObject;
 
         // Later
@@ -72,7 +72,7 @@ public class BuildingZone : MonoBehaviour
                 bounds.Encapsulate(renderer.bounds);
             }
         }
-        building = Instantiate(buildingPrefab, transform.position + new Vector3(0, bounds.size.y, 0) / 2, transform.rotation);
+        building = Instantiate(buildingPrefab, transform.position, buildingPrefab.transform.rotation);
         GameObject.Find("Faction Director").GetComponent<FactionDirector>().UpdateBuiltZone(gameObject);
 
 
