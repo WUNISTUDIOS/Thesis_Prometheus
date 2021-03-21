@@ -24,13 +24,14 @@ public class FactionDirector : MonoBehaviour
     void Start()
     {
 
+        // Currently bugged when placing more than one building at a time, ignores eachothers colliders
+        // int startingBuildings = 3;
 
-        int startingBuildings = 3;
+        // for (int i = 0; i < startingBuildings; i++)
+        // {
+        PlaceNewBuildingZone();
 
-        for (int i = 0; i < startingBuildings; i++)
-        {
-            PlaceNewBuildingZone();
-        }
+        // }
         // Will probably need to add a check for if the building is already built later
         buildingZones = new List<GameObject>(GameObject.FindGameObjectsWithTag("buildingzone"));
         for (int i = 0; i < NumOfAgents; i++)
