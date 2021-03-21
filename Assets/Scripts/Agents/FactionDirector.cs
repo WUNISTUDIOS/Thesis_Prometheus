@@ -25,9 +25,9 @@ public class FactionDirector : MonoBehaviour
     {
 
 
-        int newBuildings = 3;
+        int startingBuildings = 3;
 
-        for (int i = 0; i < newBuildings; i++)
+        for (int i = 0; i < startingBuildings; i++)
         {
             PlaceNewBuildingZone();
         }
@@ -68,14 +68,16 @@ public class FactionDirector : MonoBehaviour
         int placementTries = 0;
         float x = 0;
         float z = 0;
+        var building = Instantiate(buildingZonePrefab, new Vector3(10000, 10000, 10000), Quaternion.Euler(0, Random.Range(0f, 360f), 0));
         while (!buildingPlacementFound && placementTries < 100)
         {
             if (Physics.Raycast(transform.position + new Vector3(x, 200, z), transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, firstMask))
             {
                 Debug.DrawRay(transform.position + new Vector3(x, 200, z), transform.TransformDirection(Vector3.down) * hit.distance, Color.yellow);
-                // Building floats 2.2 units up for some reason 
                 LayerMask mask = ~LayerMask.GetMask("terrain");
-                Collider[] hitColliders = Physics.OverlapBox(hit.point, buildingZonePrefab.GetComponent<Renderer>().bounds.size, Quaternion.FromToRotation(Vector3.up, hit.normal), mask);
+                // Everything
+                // LayerMask mask = ~0;
+                Collider[] hitColliders = Physics.OverlapBox(hit.point + new Vector3(0, building.transform.localScale.y / 2, 0), building.transform.localScale / 2, building.transform.rotation * Quaternion.FromToRotation(Vector3.up, hit.normal), mask, QueryTriggerInteraction.Collide);
                 if (hitColliders.Length > 0)
                 {
                     Debug.Log("try again");
@@ -84,13 +86,19 @@ public class FactionDirector : MonoBehaviour
                 }
                 else
                 {
-                    var building = Instantiate(buildingZonePrefab, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal) * Quaternion.Euler(0, Random.Range(0f, 360f), 0));
+                    building.transform.position = hit.point;
+                    building.transform.rotation = building.transform.rotation * Quaternion.FromToRotation(Vector3.up, hit.normal);
                     Debug.Log("success");
                     buildingPlacementFound = true;
                 }
 
             }
             placementTries++;
+        }
+
+        if (!buildingPlacementFound)
+        {
+            Destroy(building);
         }
     }
     public void UpdateBuiltZone(GameObject builtZone)
