@@ -11,12 +11,12 @@ public class Resource : MonoBehaviour
 
     AudioSource OnStartSound;
 
-    private void Start()
+    private void Awake()
     {
         OnStartSound = GetComponent<AudioSource>();
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter()
     {
         OnStartSound.Play();
     }

@@ -129,6 +129,12 @@ public class NavCollector : MonoBehaviour
 
         else if (state == "returning")
         {
+            if (Resource == null)
+            {
+                state = "idle";
+                carryingObject = false;
+                return;
+            }
             Vector3 direction = ((CollectionPoint.transform.position + new Vector3(10, 0, 0)) - transform.position).normalized;
             float distance = Vector3.Distance(CollectionPoint.transform.position, transform.position);
 
@@ -184,6 +190,7 @@ public class NavCollector : MonoBehaviour
     }
     private void DropOffResource()
     {
+        if (Resource == null) return;
         if (CollectionPoint.GetComponent<BuildingZone>())
         {
             CollectionPoint.GetComponent<BuildingZone>().IncreaseResource(Resource);

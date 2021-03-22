@@ -65,7 +65,11 @@ public class BuildingZone : MonoBehaviour
 
     public void DestroyBuilding()
     {
-        StartCoroutine(DestroyBuildingCoroutine());
+        if (!exploded)
+        {
+            StartCoroutine(DestroyBuildingCoroutine());
+
+        }
     }
 
 
@@ -75,7 +79,10 @@ public class BuildingZone : MonoBehaviour
 
         yield return new WaitForSeconds(Random.Range(3f, 9f));
         Destroy(building);
+        // Change to false to renable auto rebuild
         built = true;
+        exploded = true;
+
 
         var explodedResources = new List<GameObject>();
         for (int i = 0; i < 500; i++)
@@ -92,7 +99,6 @@ public class BuildingZone : MonoBehaviour
 
         foreach (Transform child in transform)
         {
-            exploded = true;
             child.GetComponent<BoxCollider>().enabled = false;
         }
 
