@@ -18,22 +18,20 @@ public class BuildingZone : MonoBehaviour
     public bool exploded = false;
     public GameObject resourcePrefab;
 
-
-    void Start()
+    private void Awake()
     {
         var buildingResources = Resources.LoadAll("New Origin Buildings", typeof(GameObject));
         buildingPrefab = buildingResources[Random.Range(0, buildingResources.Length)] as GameObject;
 
-        // Later
-        // var bounds = buildingPrefab.GetComponent<Renderer>().bounds;
-        // transform.localScale = bounds.size;
-        // transform.position += new Vector3(0, bounds.size.y / 2, 0);
-
+        var bounds = buildingPrefab.GetComponent<Renderer>().bounds;
+        transform.localScale = bounds.size;
     }
 
     void Update()
     {
-        GetComponent<Renderer>().enabled = !built;
+
+        gameObject.transform.Find("Visualization").GetComponent<Renderer>().enabled = !built;
+
     }
     public void IncreaseResource(GameObject Resource)
     {
@@ -59,20 +57,7 @@ public class BuildingZone : MonoBehaviour
             Destroy(resource);
         }
         resourceObjects.Clear();
-        var bounds = new Bounds();
-        if (buildingPrefab.GetComponent<Renderer>())
-        {
-            bounds = buildingPrefab.GetComponent<Renderer>().bounds;
-        }
-        else
-        {
-            Renderer[] renderers = buildingPrefab.GetComponentsInChildren<Renderer>();
-            foreach (Renderer renderer in renderers)
-            {
-                bounds.Encapsulate(renderer.bounds);
-            }
-        }
-        building = Instantiate(buildingPrefab, transform.position, buildingPrefab.transform.rotation);
+        building = Instantiate(buildingPrefab, transform.position, Quaternion.Euler(buildingPrefab.transform.eulerAngles.x, transform.eulerAngles.y, buildingPrefab.transform.eulerAngles.z));
         GameObject.Find("Faction Director").GetComponent<FactionDirector>().UpdateBuiltZone(gameObject);
 
 
@@ -80,7 +65,11 @@ public class BuildingZone : MonoBehaviour
 
     public void DestroyBuilding()
     {
-        StartCoroutine(DestroyBuildingCoroutine());
+        if (!exploded)
+        {
+            StartCoroutine(DestroyBuildingCoroutine());
+
+        }
     }
 
 
@@ -90,7 +79,10 @@ public class BuildingZone : MonoBehaviour
 
         yield return new WaitForSeconds(Random.Range(3f, 9f));
         Destroy(building);
+        // Change to false to renable auto rebuild
         built = true;
+        exploded = true;
+
 
         var explodedResources = new List<GameObject>();
         for (int i = 0; i < 500; i++)
@@ -107,7 +99,6 @@ public class BuildingZone : MonoBehaviour
 
         foreach (Transform child in transform)
         {
-            exploded = true;
             child.GetComponent<BoxCollider>().enabled = false;
         }
 
