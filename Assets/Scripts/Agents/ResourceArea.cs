@@ -17,12 +17,22 @@ public class ResourceArea : MonoBehaviour
         {
             SpawnResource();
         }
+        StartCoroutine(PassiveResourceSpawn());
+    }
+    IEnumerator PassiveResourceSpawn()
+    {
+
+        yield return new WaitForSeconds(30);
+        resourcesInside += 5;
+        SpawnResource();
+        SpawnResource();
+        SpawnResource();
+        SpawnResource();
+        SpawnResource();
+        PassiveResourceSpawn();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+
 
     public void DecreaseResource()
     {
@@ -35,8 +45,9 @@ public class ResourceArea : MonoBehaviour
 
         if (resourcesInside <= 0)
         {
-            resourcesInside += 5;
+
             yield return new WaitForSeconds(respawnTime);
+            resourcesInside += 5;
             SpawnResource();
             SpawnResource();
             SpawnResource();
