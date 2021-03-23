@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class BuildingZone : MonoBehaviour
 {
-    // Start is called before the first frame update
     public List<GameObject> resourceObjects;
+
+    public int teamID = 0;
 
     public int resourcesNeeded = 40;
 
@@ -17,10 +18,22 @@ public class BuildingZone : MonoBehaviour
     public bool built = false;
     public bool exploded = false;
     public GameObject resourcePrefab;
+    public GameObject factionDirector;
 
-    private void Awake()
+
+    // Needs to be manually called because of script order stuff
+    public void Init()
     {
-        var buildingResources = Resources.LoadAll("New Origin Buildings", typeof(GameObject));
+        Object[] buildingResources;
+        if (teamID == 0)
+        {
+            buildingResources = Resources.LoadAll("City Buildings", typeof(GameObject));
+
+        }
+        else
+        {
+            buildingResources = Resources.LoadAll("Country Buildings", typeof(GameObject));
+        }
         buildingPrefab = buildingResources[Random.Range(0, buildingResources.Length)] as GameObject;
 
         var bounds = buildingPrefab.GetComponent<Renderer>().bounds;
@@ -57,9 +70,10 @@ public class BuildingZone : MonoBehaviour
             Destroy(resource);
         }
         resourceObjects.Clear();
-        building = Instantiate(buildingPrefab, transform.position, Quaternion.Euler(buildingPrefab.transform.eulerAngles.x, transform.eulerAngles.y, buildingPrefab.transform.eulerAngles.z));
-        GameObject.Find("Faction Director").GetComponent<FactionDirector>().UpdateBuiltZone(gameObject);
-
+        // building = Instantiate(buildingPrefab, transform.position, Quaternion.Euler(buildingPrefab.transform.eulerAngles.x, transform.eulerAngles.y, buildingPrefab.transform.eulerAngles.z));
+        building = Instantiate(buildingPrefab, transform.position, transform.rotation);
+        factionDirector.GetComponent<FactionDirector>().UpdateBuiltZone(gameObject);
+        SetColliders(false);
 
     }
 
@@ -83,7 +97,7 @@ public class BuildingZone : MonoBehaviour
         built = true;
         exploded = true;
 
-
+        SetColliders(true);
         var explodedResources = new List<GameObject>();
         for (int i = 0; i < 500; i++)
         {
@@ -96,12 +110,7 @@ public class BuildingZone : MonoBehaviour
 
 
         yield return new WaitForSeconds(Random.Range(1.5f, 3f));
-
-        foreach (Transform child in transform)
-        {
-            child.GetComponent<BoxCollider>().enabled = false;
-        }
-
+        SetColliders(false);
 
         yield return new WaitForSeconds(10f);
 
@@ -119,9 +128,20 @@ public class BuildingZone : MonoBehaviour
 
     }
 
+    private void SetColliders(bool value)
+    {
+        // gameObject.GetComponent<BoxCollider>().enabled = value;
+        foreach (Transform child in transform)
+        {
+            if (child.GetComponent<BoxCollider>())
+            {
+                child.GetComponent<BoxCollider>().enabled = value;
+            }
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("agent"))
+        if (other.CompareTag("agent") && other.GetComponent<NavCollector>().teamID == teamID)
         {
             other.GetComponent<NavCollector>().OnEnterZone(gameObject);
         }

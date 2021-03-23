@@ -609,6 +609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceObjects: []
+  teamID: 0
   resourcesNeeded: 3
   buildingPrefab: {fileID: -927199367670048503, guid: cd881eb42723e73419c1b8059f825535,
     type: 3}
@@ -617,6 +618,7 @@ MonoBehaviour:
   exploded: 0
   resourcePrefab: {fileID: 7283197747343145214, guid: f275bfc006d7153429ea5d241895ee3e,
     type: 3}
+  factionDirector: {fileID: 0}
 --- !u!208 &-6884893206406343175
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -629,7 +631,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.4, y: 0.4, z: 0.4}
   m_MoveThreshold: 0.1
-  m_Carve: 1
+  m_Carve: 0
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5

@@ -5,10 +5,8 @@ using UnityEngine.AI;
 
 public class FactionDirector : MonoBehaviour
 {
-    public GameObject agentPrefab;
-
-    public GameObject buildingZonePrefab;
-
+    public int NumOfAgents = 10;
+    public int teamID = 0;
     public List<GameObject> agents;
 
     public List<GameObject> buildingZones;
@@ -17,8 +15,9 @@ public class FactionDirector : MonoBehaviour
 
     public GameObject supplyZone;
 
+    public GameObject agentPrefab;
 
-    public int NumOfAgents = 10;
+    public GameObject buildingZonePrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -33,13 +32,13 @@ public class FactionDirector : MonoBehaviour
 
         // }
         // Will probably need to add a check for if the building is already built later
-        buildingZones = new List<GameObject>(GameObject.FindGameObjectsWithTag("buildingzone"));
         for (int i = 0; i < NumOfAgents; i++)
         {
             var newAgent = Instantiate(agentPrefab, transform.position, Quaternion.identity);
             newAgent.GetComponent<NavCollector>().CollectionPoint = buildingZones[0];
             newAgent.GetComponent<NavCollector>().supplyZone = supplyZone;
             newAgent.GetComponent<NavMeshAgent>().speed = Random.Range(70f, 120f);
+            newAgent.GetComponent<NavCollector>().teamID = teamID;
             agents.Add(newAgent);
 
         }
@@ -70,28 +69,56 @@ public class FactionDirector : MonoBehaviour
         float x = 0;
         float z = 0;
         var building = Instantiate(buildingZonePrefab, new Vector3(10000, 10000, 10000), Quaternion.Euler(0, Random.Range(0f, 360f), 0));
+        building.GetComponent<BuildingZone>().teamID = teamID;
+        building.GetComponent<BuildingZone>().factionDirector = gameObject;
+        building.GetComponent<BuildingZone>().Init();
         while (!buildingPlacementFound && placementTries < 100)
         {
             if (Physics.Raycast(transform.position + new Vector3(x, 200, z), transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, firstMask))
             {
-                Debug.DrawRay(transform.position + new Vector3(x, 200, z), transform.TransformDirection(Vector3.down) * hit.distance, Color.yellow);
-                LayerMask mask = ~LayerMask.GetMask("terrain");
-                // Everything
-                // LayerMask mask = ~0;
-                Collider[] hitColliders = Physics.OverlapBox(hit.point + new Vector3(0, building.transform.localScale.y / 2, 0), building.transform.localScale / 2, building.transform.rotation * Quaternion.FromToRotation(Vector3.up, hit.normal), mask, QueryTriggerInteraction.Collide);
-                if (hitColliders.Length > 0)
+                // Yes I know this is starting to become if statement hell
+                var hitRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+                if (hitRotation.eulerAngles.x >= 30 || hitRotation.eulerAngles.x <= -30 || hitRotation.eulerAngles.z >= 30 || hitRotation.eulerAngles.z <= -30)
                 {
-                    Debug.Log("try again");
+                    Debug.Log("go next");
                     x += Random.Range(-20, 20f);
                     z += Random.Range(-20, 20f);
                 }
                 else
                 {
-                    building.transform.position = hit.point;
-                    building.transform.rotation = building.transform.rotation * Quaternion.FromToRotation(Vector3.up, hit.normal);
-                    Debug.Log("success");
-                    buildingPlacementFound = true;
+                    Debug.DrawRay(transform.position + new Vector3(x, 200, z), transform.TransformDirection(Vector3.down) * hit.distance, Color.yellow);
+                    LayerMask mask = ~LayerMask.GetMask("terrain");
+                    // Everything
+                    // LayerMask mask = ~0;
+                    Collider[] hitColliders = Physics.OverlapBox(hit.point + new Vector3(0, building.transform.localScale.y / 2, 0), building.transform.localScale / 2, building.transform.rotation * Quaternion.FromToRotation(Vector3.up, hit.normal), mask, QueryTriggerInteraction.Collide);
+                    if (hitColliders.Length > 0)
+                    {
+                        Debug.Log("go next");
+                        x += Random.Range(-20, 20f);
+                        z += Random.Range(-20, 20f);
+                    }
+                    else
+                    {
+                        // if (teamID == 1)
+                        // {
+                        //     building.transform.position = hit.point + new Vector3(0, building.transform.localScale.y / 2, 0);
+
+                        // }
+                        // else
+                        // {
+
+                        //     building.transform.position = hit.point;
+                        // }
+
+                        building.transform.position = hit.point;
+
+                        building.transform.rotation = building.transform.rotation * hitRotation;
+                        Debug.Log("success");
+                        buildingPlacementFound = true;
+                        buildingZones.Add(building);
+                    }
                 }
+
 
             }
             placementTries++;
@@ -102,10 +129,10 @@ public class FactionDirector : MonoBehaviour
             Destroy(building);
         }
     }
-    public void UpdateBuiltZone(GameObject builtZone)
+    public void UpdateBuiltZone(GameObject buildZone)
     {
-        buildingZones.Remove(builtZone);
-        completedBuildingZones.Add(builtZone);
+        buildingZones.Remove(buildZone);
+        completedBuildingZones.Add(buildZone);
         OrderAgentsToBuildNext();
 
         // Destroy buildings test 
@@ -125,7 +152,7 @@ public class FactionDirector : MonoBehaviour
 
         foreach (GameObject building in foundBuildings)
         {
-            if (!building.GetComponent<BuildingZone>().built && !buildingZones.Contains(building))
+            if (!building.GetComponent<BuildingZone>().built && !buildingZones.Contains(building) && building.GetComponent<BuildingZone>().teamID == teamID)
             {
                 buildingZones.Add(building);
             }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class NavCollector : MonoBehaviour
 {
-
     UnityEngine.AI.NavMeshAgent myNavMeshAgent;
+    public int teamID = 0;
 
     public GameObject CollectionPoint;
     public GameObject Resource;
@@ -20,7 +20,6 @@ public class NavCollector : MonoBehaviour
     void Start()
     {
         myNavMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-
 
     }
     void Update()

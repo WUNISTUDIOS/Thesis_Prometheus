@@ -43,12 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef8ec7e648af71944bb80ad5143c9df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agentPrefab: {fileID: 4275547083432178386, guid: 783206f5dff9849498af8ee3cd69013d,
-    type: 3}
-  buildingZonePrefab: {fileID: 7493454107341368923, guid: 57f4fa76eda5c8d44a7dd00196d9034d,
-    type: 3}
+  NumOfAgents: 10
+  teamID: 0
   agents: []
   buildingZones: []
   completedBuildingZones: []
   supplyZone: {fileID: 0}
-  NumOfAgents: 10
+  agentPrefab: {fileID: 4275547083432178386, guid: 783206f5dff9849498af8ee3cd69013d,
+    type: 3}
+  buildingZonePrefab: {fileID: 7493454107341368923, guid: 57f4fa76eda5c8d44a7dd00196d9034d,
+    type: 3}
