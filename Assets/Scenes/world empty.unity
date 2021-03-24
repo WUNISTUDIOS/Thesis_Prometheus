@@ -9361,7 +9361,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.26666668
+  m_VoxelSize: 0.6666667
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: f6f6f24321258714fb109fdf503b93c5, type: 2}
 --- !u!1 &180721682
@@ -10381,10 +10381,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6787857041902542353, guid: b548f3215f1bd0a4e9c8ff76fca68cc4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7493454107341368923, guid: b548f3215f1bd0a4e9c8ff76fca68cc4,
         type: 3}
       propertyPath: m_Name
       value: CollectionPoint (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493454107341368923, guid: b548f3215f1bd0a4e9c8ff76fca68cc4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 8375759211705427972, guid: b548f3215f1bd0a4e9c8ff76fca68cc4,
         type: 3}
@@ -20535,15 +20545,15 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
-  m_UseGeometry: 0
+    m_Bits: 128823
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.26666668
+  m_VoxelSize: 0.6666667
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: 40d6998c523c54849b81509fbcf5211b, type: 2}
 --- !u!1 &406960921
@@ -22670,6 +22680,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CollectionPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493454107341368923, guid: b548f3215f1bd0a4e9c8ff76fca68cc4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 8375759211705427972, guid: b548f3215f1bd0a4e9c8ff76fca68cc4,
         type: 3}
@@ -66180,7 +66195,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.26666668
+  m_VoxelSize: 0.6666667
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 0}
 --- !u!154 &1223240134
@@ -69369,17 +69384,17 @@ PrefabInstance:
     - target: {fileID: 6413293938871336272, guid: a4ea1062c430d774d921cafeed7ddcec,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -111.32
+      value: -105.85
       objectReference: {fileID: 0}
     - target: {fileID: 6413293938871336272, guid: a4ea1062c430d774d921cafeed7ddcec,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.2900019
+      value: 3.816
       objectReference: {fileID: 0}
     - target: {fileID: 6413293938871336272, guid: a4ea1062c430d774d921cafeed7ddcec,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 232.56
+      value: 237.47
       objectReference: {fileID: 0}
     - target: {fileID: 6413293938871336272, guid: a4ea1062c430d774d921cafeed7ddcec,
         type: 3}
@@ -70414,7 +70429,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.26666668
+  m_VoxelSize: 0.6666667
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: 97d881394cfe5b645a439af8c2b215d9, type: 2}
 --- !u!1001 &1307009543
@@ -107140,22 +107155,22 @@ PrefabInstance:
     - target: {fileID: 7279977743273087638, guid: 4e9c6ad0d2fe7824a8897607c2662994,
         type: 3}
       propertyPath: respawnTime
-      value: 1
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7279977743273087642, guid: 4e9c6ad0d2fe7824a8897607c2662994,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.4
+      value: -68.4
       objectReference: {fileID: 0}
     - target: {fileID: 7279977743273087642, guid: 4e9c6ad0d2fe7824a8897607c2662994,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 39.8
+      value: 53.3
       objectReference: {fileID: 0}
     - target: {fileID: 7279977743273087642, guid: 4e9c6ad0d2fe7824a8897607c2662994,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 31.26
+      value: 12.9
       objectReference: {fileID: 0}
     - target: {fileID: 7279977743273087642, guid: 4e9c6ad0d2fe7824a8897607c2662994,
         type: 3}
@@ -107200,12 +107215,17 @@ PrefabInstance:
     - target: {fileID: 7279977743273087642, guid: 4e9c6ad0d2fe7824a8897607c2662994,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 83.568146
+      value: 26.768206
       objectReference: {fileID: 0}
     - target: {fileID: 7279977743273087642, guid: 4e9c6ad0d2fe7824a8897607c2662994,
         type: 3}
       propertyPath: m_LocalScale.x
       value: 21.188107
+      objectReference: {fileID: 0}
+    - target: {fileID: 7279977743273087642, guid: 4e9c6ad0d2fe7824a8897607c2662994,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 35.0768
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e9c6ad0d2fe7824a8897607c2662994, type: 3}
@@ -112195,17 +112215,17 @@ PrefabInstance:
     - target: {fileID: 7279977743273087642, guid: 4e9c6ad0d2fe7824a8897607c2662994,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -259.6
+      value: -130.8
       objectReference: {fileID: 0}
     - target: {fileID: 7279977743273087642, guid: 4e9c6ad0d2fe7824a8897607c2662994,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.9
+      value: 36.6
       objectReference: {fileID: 0}
     - target: {fileID: 7279977743273087642, guid: 4e9c6ad0d2fe7824a8897607c2662994,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -50.3
+      value: -109
       objectReference: {fileID: 0}
     - target: {fileID: 7279977743273087642, guid: 4e9c6ad0d2fe7824a8897607c2662994,
         type: 3}
@@ -112250,12 +112270,12 @@ PrefabInstance:
     - target: {fileID: 7279977743273087642, guid: 4e9c6ad0d2fe7824a8897607c2662994,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 111.34995
+      value: 17.451338
       objectReference: {fileID: 0}
     - target: {fileID: 7279977743273087642, guid: 4e9c6ad0d2fe7824a8897607c2662994,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 11.365719
+      value: 49.32343
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e9c6ad0d2fe7824a8897607c2662994, type: 3}

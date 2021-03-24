@@ -54,7 +54,7 @@ public class FactionDirector : MonoBehaviour
         OrderAgentsToBuildNext();
 
         // supplyZone.GetComponent<SupplyZone>().resourceObjects.Count > 30 && 
-        if (supplyZone.GetComponent<SupplyZone>().resourceObjects.Count >= 0 && buildingZones.Count <= 0)
+        if (supplyZone.GetComponent<SupplyZone>().resourceObjects.Count >= 0  && buildingZones.Count <= 0)
         {
             PlaceNewBuildingZone();
         }
@@ -90,7 +90,17 @@ public class FactionDirector : MonoBehaviour
                     LayerMask mask = ~LayerMask.GetMask("terrain");
                     // Everything
                     // LayerMask mask = ~0;
-                    Collider[] hitColliders = Physics.OverlapBox(hit.point + new Vector3(0, building.transform.localScale.y / 2, 0), building.transform.localScale / 2, building.transform.rotation * Quaternion.FromToRotation(Vector3.up, hit.normal), mask, QueryTriggerInteraction.Collide);
+                    Collider[] hitColliders;
+                    if (teamID == 0)
+                    {
+
+                        hitColliders = Physics.OverlapBox(hit.point + new Vector3(0, building.transform.localScale.y / 2, 0), building.transform.localScale / 2, building.transform.rotation * Quaternion.FromToRotation(Vector3.up, hit.normal), mask, QueryTriggerInteraction.Collide);
+                    }
+                    else
+                    {
+                        hitColliders = Physics.OverlapBox(hit.point + new Vector3(0, building.transform.localScale.y / 2, 0), building.transform.localScale / 4, building.transform.rotation * Quaternion.FromToRotation(Vector3.up, hit.normal), mask, QueryTriggerInteraction.Collide);
+
+                    }
                     if (hitColliders.Length > 0)
                     {
                         Debug.Log("go next");
@@ -109,13 +119,24 @@ public class FactionDirector : MonoBehaviour
 
                         //     building.transform.position = hit.point;
                         // }
+                        // Check if building placement is reachable
+                        var path = new NavMeshPath();
+                        NavMesh.CalculatePath(supplyZone.transform.position, hit.point, NavMesh.AllAreas, path);
+                        if (path.status == NavMeshPathStatus.PathComplete)
+                        {
+                            building.transform.position = hit.point;
+                            building.transform.rotation = building.transform.rotation * hitRotation;
+                            Debug.Log("success");
+                            buildingPlacementFound = true;
+                            buildingZones.Add(building);
+                        }
+                        else
+                        {
+                            Debug.Log("go next");
+                            x += Random.Range(-20, 20f);
+                            z += Random.Range(-20, 20f);
+                        }
 
-                        building.transform.position = hit.point;
-
-                        building.transform.rotation = building.transform.rotation * hitRotation;
-                        Debug.Log("success");
-                        buildingPlacementFound = true;
-                        buildingZones.Add(building);
                     }
                 }
 

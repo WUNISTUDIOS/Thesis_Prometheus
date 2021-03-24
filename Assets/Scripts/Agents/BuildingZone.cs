@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BuildingZone : MonoBehaviour
 {
@@ -33,11 +34,13 @@ public class BuildingZone : MonoBehaviour
         else
         {
             buildingResources = Resources.LoadAll("Country Buildings", typeof(GameObject));
+            GetComponent<NavMeshObstacle>().size = new Vector3(0.4f, 0.4f, 0.4f);
         }
         buildingPrefab = buildingResources[Random.Range(0, buildingResources.Length)] as GameObject;
 
         var bounds = buildingPrefab.GetComponent<Renderer>().bounds;
         transform.localScale = bounds.size;
+
     }
 
     void Update()
