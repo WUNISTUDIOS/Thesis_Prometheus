@@ -38,7 +38,19 @@ public class BuildingZone : MonoBehaviour
         }
         buildingPrefab = buildingResources[Random.Range(0, buildingResources.Length)] as GameObject;
 
-        var bounds = buildingPrefab.GetComponent<Renderer>().bounds;
+        var bounds = new Bounds();
+        if (buildingPrefab.GetComponent<Renderer>())
+        {
+            bounds = buildingPrefab.GetComponent<Renderer>().bounds;
+        }
+        else
+        {
+            Renderer[] renderers = buildingPrefab.GetComponentsInChildren<Renderer>();
+            foreach (Renderer renderer in renderers)
+            {
+                bounds.Encapsulate(renderer.bounds);
+            }
+        }
         transform.localScale = bounds.size;
 
     }

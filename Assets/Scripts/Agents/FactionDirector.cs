@@ -54,7 +54,7 @@ public class FactionDirector : MonoBehaviour
         OrderAgentsToBuildNext();
 
         // supplyZone.GetComponent<SupplyZone>().resourceObjects.Count > 30 && 
-        if (supplyZone.GetComponent<SupplyZone>().resourceObjects.Count >= 0  && buildingZones.Count <= 0)
+        if (supplyZone.GetComponent<SupplyZone>().resourceObjects.Count >= 0 && buildingZones.Count <= 0)
         {
             PlaceNewBuildingZone();
         }
@@ -72,7 +72,7 @@ public class FactionDirector : MonoBehaviour
         building.GetComponent<BuildingZone>().teamID = teamID;
         building.GetComponent<BuildingZone>().factionDirector = gameObject;
         building.GetComponent<BuildingZone>().Init();
-        while (!buildingPlacementFound && placementTries < 100)
+        while (!buildingPlacementFound && placementTries < 200)
         {
             if (Physics.Raycast(transform.position + new Vector3(x, 200, z), transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, firstMask))
             {
