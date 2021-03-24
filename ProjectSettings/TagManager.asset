@@ -12,6 +12,9 @@ TagManager:
   - boundary
   - buildingzone
   - agent
+  - cam1
+  - cam2
+  - Ground
   layers:
   - Default
   - TransparentFX
