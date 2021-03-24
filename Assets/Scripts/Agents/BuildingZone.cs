@@ -21,7 +21,7 @@ public class BuildingZone : MonoBehaviour
     public GameObject resourcePrefab;
     public GameObject factionDirector;
 
-
+    private GameObject Visualization;
     // Needs to be manually called because of script order stuff
     public void Init()
     {
@@ -52,13 +52,27 @@ public class BuildingZone : MonoBehaviour
             }
         }
         transform.localScale = bounds.size;
+        Visualization = gameObject.transform.Find("Visualization").gameObject;
+
+        if (teamID == 0)
+        {
+            iTween.MoveTo(Visualization, new Hashtable(){
+        {"isLocal", true},
+        {"position", new Vector3(Visualization.transform.localPosition.x, 0.447f, Visualization.transform.localPosition.z)},
+        {"time", Random.Range(5f, 10f)}
+        });
+        }
+        else
+        {
+            Visualization.SetActive(false);
+        }
 
     }
 
     void Update()
     {
 
-        gameObject.transform.Find("Visualization").GetComponent<Renderer>().enabled = !built;
+        // gameObject.transform.Find("Visualization").GetComponent<Renderer>().enabled = !built;
 
     }
     public void IncreaseResource(GameObject Resource)
@@ -87,7 +101,26 @@ public class BuildingZone : MonoBehaviour
         resourceObjects.Clear();
         // building = Instantiate(buildingPrefab, transform.position, Quaternion.Euler(buildingPrefab.transform.eulerAngles.x, transform.eulerAngles.y, buildingPrefab.transform.eulerAngles.z));
         building = Instantiate(buildingPrefab, transform.position, transform.rotation);
+        if (teamID == 0)
+        {
+            building.transform.position = building.transform.position - new Vector3(0, transform.localScale.y, 0);
+            iTween.MoveTo(building, transform.position, Random.Range(3f, 6f));
+
+        }
+        else
+        {
+            building.transform.localScale = new Vector3(0, 0, 0);
+            iTween.ScaleTo(building, new Vector3(1, 1, 1), Random.Range(3f, 6f));
+
+        }
         factionDirector.GetComponent<FactionDirector>().UpdateBuiltZone(gameObject);
+
+        iTween.MoveTo(Visualization, new Hashtable(){
+        {"isLocal", true},
+        {"position", new Vector3(Visualization.transform.localPosition.x, -0.591f, Visualization.transform.localPosition.z)
+        },
+        {"time", Random.Range(5f, 10f)}
+        });
         SetColliders(false);
 
     }
