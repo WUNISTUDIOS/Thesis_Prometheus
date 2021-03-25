@@ -9,7 +9,7 @@ public class BuildingZone : MonoBehaviour
 
     public int teamID = 0;
 
-    public int resourcesNeeded = 40;
+    public int resourcesNeeded;
 
     public GameObject buildingPrefab;
 
@@ -25,6 +25,7 @@ public class BuildingZone : MonoBehaviour
     // Needs to be manually called because of script order stuff
     public void Init()
     {
+        resourcesNeeded = 20;
         Object[] buildingResources;
         if (teamID == 0)
         {
@@ -56,17 +57,32 @@ public class BuildingZone : MonoBehaviour
 
         if (teamID == 0)
         {
-            iTween.MoveTo(Visualization, new Hashtable(){
-        {"isLocal", true},
-        {"position", new Vector3(Visualization.transform.localPosition.x, 0.447f, Visualization.transform.localPosition.z)},
-        {"time", Random.Range(5f, 10f)}
-        });
+            //     iTween.MoveTo(Visualization, new Hashtable(){
+            // {"isLocal", true},
+            // {"position", new Vector3(Visualization.transform.localPosition.x, 0.4f, Visualization.transform.localPosition.z)},
+            // {"time", Random.Range(8f, 14f)}
+            // });
         }
         else
         {
+
             Visualization.SetActive(false);
         }
 
+    }
+
+    public void OnPlaced()
+    {
+        if (teamID == 0)
+        {
+
+        }
+        else
+        {
+
+            building = Instantiate(buildingPrefab, transform.position, transform.rotation);
+            building.transform.localScale = new Vector3(0, 0, 0);
+        }
     }
 
     void Update()
@@ -79,16 +95,35 @@ public class BuildingZone : MonoBehaviour
     {
         Resource.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         Resource.transform.parent = null;
-        Resource.transform.localPosition = transform.position + new Vector3(0, 20, 0);
+        Resource.transform.localPosition = transform.position + new Vector3(0, 5, 0);
         Resource.GetComponent<Rigidbody>().useGravity = false;
         Resource.layer = 11;
+        Resource.GetComponent<Renderer>().enabled = false;
         resourceObjects.Add(Resource);
+
+
+        if (teamID == 0)
+        {
+            var increaseBy = 1f / resourcesNeeded;
+            iTween.MoveTo(Visualization, new Hashtable(){
+        {"isLocal", true},
+        {"position", new Vector3(Visualization.transform.localPosition.x,
+        Visualization.transform.localPosition.y + increaseBy, Visualization.transform.localPosition.z)},
+        {"time", 1}
+        });
+        }
+        else
+        {
+            var increaseBy = 1f / resourcesNeeded;
+            iTween.ScaleTo(building, new Vector3(building.transform.localScale.x + increaseBy, building.transform.localScale.y + increaseBy, building.transform.localScale.z + increaseBy), 1);
+        }
 
         if (resourceObjects.Count > resourcesNeeded)
         {
 
             CreateBuilding();
         }
+
 
     }
     public void CreateBuilding()
@@ -100,17 +135,17 @@ public class BuildingZone : MonoBehaviour
         }
         resourceObjects.Clear();
         // building = Instantiate(buildingPrefab, transform.position, Quaternion.Euler(buildingPrefab.transform.eulerAngles.x, transform.eulerAngles.y, buildingPrefab.transform.eulerAngles.z));
-        building = Instantiate(buildingPrefab, transform.position, transform.rotation);
         if (teamID == 0)
         {
+            building = Instantiate(buildingPrefab, transform.position, transform.rotation);
             building.transform.position = building.transform.position - new Vector3(0, transform.localScale.y, 0);
-            iTween.MoveTo(building, transform.position, Random.Range(3f, 6f));
+            iTween.MoveTo(building, transform.position, Random.Range(6f, 9f));
 
         }
         else
         {
-            building.transform.localScale = new Vector3(0, 0, 0);
-            iTween.ScaleTo(building, new Vector3(1, 1, 1), Random.Range(3f, 6f));
+            // building.transform.localScale = new Vector3(0, 0, 0);
+            // iTween.ScaleTo(building, new Vector3(1, 1, 1), Random.Range(6f, 9f));
 
         }
         factionDirector.GetComponent<FactionDirector>().UpdateBuiltZone(gameObject);
@@ -119,7 +154,7 @@ public class BuildingZone : MonoBehaviour
         {"isLocal", true},
         {"position", new Vector3(Visualization.transform.localPosition.x, -0.591f, Visualization.transform.localPosition.z)
         },
-        {"time", Random.Range(5f, 10f)}
+        {"time", Random.Range(8f, 14f)}
         });
         SetColliders(false);
 

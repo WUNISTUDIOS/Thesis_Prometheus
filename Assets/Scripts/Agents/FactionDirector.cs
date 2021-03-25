@@ -126,6 +126,7 @@ public class FactionDirector : MonoBehaviour
                         {
                             building.transform.position = hit.point;
                             building.transform.rotation = building.transform.rotation * hitRotation;
+                            building.GetComponent<BuildingZone>().OnPlaced();
                             Debug.Log("success");
                             buildingPlacementFound = true;
                             buildingZones.Add(building);
