@@ -28,7 +28,10 @@ public class FactionDirector : MonoBehaviour
 
         // for (int i = 0; i < startingBuildings; i++)
         // {
-        PlaceNewBuildingZone();
+        while (buildingZones.Count == 0)
+        {
+            PlaceNewBuildingZone();
+        }
 
         // }
         // Will probably need to add a check for if the building is already built later
@@ -183,6 +186,7 @@ public class FactionDirector : MonoBehaviour
     }
     public void OrderAgentsToBuildNext()
     {
+
         foreach (GameObject agent in agents)
         {
             if (buildingZones.Count > 0)

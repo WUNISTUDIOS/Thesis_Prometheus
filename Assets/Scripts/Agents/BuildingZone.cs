@@ -25,7 +25,10 @@ public class BuildingZone : MonoBehaviour
     // Needs to be manually called because of script order stuff
     public void Init()
     {
-        resourcesNeeded = 20;
+
+        resourcesNeeded = 3;
+
+
         Object[] buildingResources;
         if (teamID == 0)
         {
@@ -95,7 +98,7 @@ public class BuildingZone : MonoBehaviour
     {
         Resource.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         Resource.transform.parent = null;
-        Resource.transform.localPosition = transform.position + new Vector3(0, 5, 0);
+        Resource.transform.localPosition = transform.position + new Vector3(0, 1, 0);
         Resource.GetComponent<Rigidbody>().useGravity = false;
         Resource.layer = 11;
         Resource.GetComponent<Renderer>().enabled = false;
@@ -184,7 +187,7 @@ public class BuildingZone : MonoBehaviour
         var explodedResources = new List<GameObject>();
         for (int i = 0; i < 500; i++)
         {
-            var resource = Instantiate(resourcePrefab, transform.position + new Vector3(0, 10, 0), Quaternion.identity);
+            var resource = Instantiate(resourcePrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
             resource.GetComponent<Resource>().collected = true;
             resource.GetComponent<Rigidbody>().useGravity = false;
             explodedResources.Add(resource);
