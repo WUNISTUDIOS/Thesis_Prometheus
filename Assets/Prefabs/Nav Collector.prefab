@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 2551602995825247758}
   - component: {fileID: 5220840187662331082}
   - component: {fileID: 5220840187662331083}
-  - component: {fileID: 5220840187662330928}
   - component: {fileID: 5220840187662330929}
   - component: {fileID: 5220840187662330934}
   - component: {fileID: 4381663815471546278}
+  - component: {fileID: 40222999390243424}
   m_Layer: 10
   m_Name: Nav Collector
   m_TagString: agent
@@ -117,18 +117,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.182147, y: 4.2919984, z: 2.1821473}
   m_Center: {x: 0.0050728917, y: 0.09339285, z: 0.0007468462}
---- !u!114 &5220840187662330928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4275547083432178386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 951d01f172694f74db34d37d0c8dc560, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!195 &5220840187662330929
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -267,6 +255,103 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!82 &40222999390243424
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4275547083432178386}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 8403805852828005014, guid: 0b7f472ba0da9e445aea31b12a183e56,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 95855283df997e741ab490ec9375d20f, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6715987346506741971
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,13 +376,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6715987346506741971}
-  m_LocalRotation: {x: -0.12599179, y: -0, z: -0, w: -0.99203134}
-  m_LocalPosition: {x: 0, y: 1.3799996, z: -0.14001465}
+  m_LocalRotation: {x: -0.07946044, y: -0, z: -0, w: -0.9968381}
+  m_LocalPosition: {x: 0, y: 1.3799996, z: -0.182}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 940850671945007297}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 374.476, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 369.115, y: 0, z: 0}
 --- !u!108 &6715987346506741965
 Light:
   m_ObjectHideFlags: 0
@@ -310,10 +395,10 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 55.9
-  m_Range: 39.2
-  m_SpotAngle: 124.21053
-  m_InnerSpotAngle: 21.80208
+  m_Intensity: 200
+  m_Range: 61.77
+  m_SpotAngle: 179
+  m_InnerSpotAngle: 61.022728
   m_CookieSize: 10
   m_Shadows:
     m_Type: 1
