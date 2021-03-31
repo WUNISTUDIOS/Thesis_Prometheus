@@ -70,11 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
   m_Name: Global Volume Profile
   m_EditorClassIdentifier: 
-  components:
-  - {fileID: 2491982931721330324}
-  - {fileID: 3107064088681587904}
-  - {fileID: -119654464127799098}
-  - {fileID: -3797664274154470950}
+  components: []
 --- !u!114 &2491982931721330324
 MonoBehaviour:
   m_ObjectHideFlags: 3
