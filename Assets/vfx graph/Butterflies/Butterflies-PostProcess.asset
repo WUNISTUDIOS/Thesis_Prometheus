@@ -386,7 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 953beb541740ddc499d005ee80c9ff29, type: 3}
   m_Name: Fog
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   enabled:
     m_OverrideState: 1
@@ -396,7 +396,7 @@ MonoBehaviour:
     m_Value: 0
   color:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0, b: 0, a: 1}
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
     hdr: 1
     showAlpha: 0
     showEyeDropper: 1
@@ -419,10 +419,10 @@ MonoBehaviour:
     min: 0
   baseHeight:
     m_OverrideState: 1
-    m_Value: 212.02
+    m_Value: 326.8
   maximumHeight:
     m_OverrideState: 1
-    m_Value: 212.02
+    m_Value: 326.8
   albedo:
     m_OverrideState: 1
     m_Value: {r: 0.6509434, g: 0.6417319, b: 0.6417319, a: 1}
@@ -431,7 +431,7 @@ MonoBehaviour:
     showEyeDropper: 1
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 900
+    m_Value: 605.4
     min: 1
   enableVolumetricFog:
     m_OverrideState: 1

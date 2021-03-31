@@ -59,7 +59,7 @@ public class FactionDirector : MonoBehaviour
         var newAgent = Instantiate(agentPrefab, transform.position, Quaternion.identity);
         newAgent.GetComponent<NavCollector>().CollectionPoint = supplyZone;
         newAgent.GetComponent<NavCollector>().supplyZone = supplyZone;
-        newAgent.GetComponent<NavMeshAgent>().speed = Random.Range(25f, 60f);
+        newAgent.GetComponent<NavMeshAgent>().speed = Random.Range(20f, 50f);
         // newAgent.GetComponent<NavMeshAgent>().speed = Random.Range(60f, 120f);
         newAgent.GetComponent<NavCollector>().teamID = teamID;
         agents.Add(newAgent);
