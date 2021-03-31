@@ -17,11 +17,37 @@ public class NavCollector : MonoBehaviour
 
     public GameObject SpotLight;
 
+    AudioSource[] AudioSources;
+
     void Start()
     {
         myNavMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        AudioSources = GetComponents<AudioSource>();
+
+
+
+
+
+        StartCoroutine(TimeToDie());
 
     }
+
+    IEnumerator TimeToDie()
+    {
+        yield return new WaitForSeconds(Random.Range(300f, 360f));
+        // yield return new WaitForSeconds(Random.Range(5f, 10f));
+        // AudioSources[1].pitch = Random.Range(-1f, 2f);
+        AudioSources[1].Play();
+        state = "dying";
+        myNavMeshAgent.isStopped = true;
+        myNavMeshAgent.enabled = false;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        iTween.RotateTo(gameObject, new Vector3(transform.rotation.x, transform.rotation.y, 90), 1.5f);
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
+
+    }
+
     void Update()
     {
         if (state == "collecting")
