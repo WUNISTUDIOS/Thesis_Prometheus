@@ -3,7 +3,17 @@ guid: 17897fa001031cf43a7d865df5fba830
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: heli_body
+    second: {fileID: 2100000, guid: 1ce36117258b1ff45ae9084d8e4ddead, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: helipad
+    second: {fileID: 2100000, guid: 23f2f1778fdef6f45a57a7f7ec6faae9, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

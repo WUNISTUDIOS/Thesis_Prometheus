@@ -3,7 +3,22 @@ guid: 0ef335f464712894a91392e9878b4b66
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 6380a73c231ac89498d6e4e1f0b49c6b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palmate.002
+    second: {fileID: 2100000, guid: 71cc600328d6b7d4b942c9c54654cd29, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: twig.002
+    second: {fileID: 2100000, guid: 72e2168c26e7c0c41924b86cf03acce7, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
