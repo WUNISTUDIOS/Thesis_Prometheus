@@ -185,7 +185,7 @@ public class BuildingZone : MonoBehaviour
 
         SetColliders(true);
         var explodedResources = new List<GameObject>();
-        for (int i = 0; i < 500; i++)
+        for (int i = 0; i < 100; i++)
         {
             var resource = Instantiate(resourcePrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
             resource.GetComponent<Resource>().collected = true;
@@ -198,7 +198,7 @@ public class BuildingZone : MonoBehaviour
         yield return new WaitForSeconds(Random.Range(1.5f, 3f));
         SetColliders(false);
 
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(5f);
 
         foreach (GameObject resource in explodedResources)
         {
@@ -208,9 +208,8 @@ public class BuildingZone : MonoBehaviour
 
         // Uncomment to auto regen buildings after 30s
         // yield return new WaitForSeconds(30f);
-        // built = false;
-        //GetComponent<Renderer>().enabled = false;
-        // exploded = false;
+        built = false;
+        exploded = false;
 
     }
 

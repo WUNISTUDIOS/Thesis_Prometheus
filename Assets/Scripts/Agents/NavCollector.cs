@@ -95,6 +95,7 @@ public class NavCollector : MonoBehaviour
         {
 
             SpotLight.GetComponent<Light>().color = new Color(1f, 1f, 1f, 1f);
+            myNavMeshAgent.SetDestination(supplyZone.transform.position + new Vector3(Random.Range(-120, 120), 0, Random.Range(-120, 120)));
             if (CollectionPoint != null && carryingObject)
             {
                 state = "returning";
