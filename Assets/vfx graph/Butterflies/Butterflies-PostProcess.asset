@@ -356,7 +356,7 @@ MonoBehaviour:
     m_Value: {fileID: 0}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.191
+    m_Value: 0.097
     min: 0
     max: 1
   m_MaxSamples:
@@ -532,7 +532,7 @@ MonoBehaviour:
     m_Value: 0
   color:
     m_OverrideState: 1
-    m_Value: {r: 0.115566045, g: 0.16368663, b: 0.46226418, a: 1}
+    m_Value: {r: 0.109914556, g: 0.12968744, b: 0.24528301, a: 1}
     hdr: 0
     showAlpha: 0
     showEyeDropper: 1
