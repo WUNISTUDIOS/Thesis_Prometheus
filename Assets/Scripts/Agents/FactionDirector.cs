@@ -217,6 +217,11 @@ public class FactionDirector : MonoBehaviour
         PopulationSupported = completedBuildingZones.Count * PerBuildingSupply;
         OrderAgentsToBuildNext();
 
+        if (teamID == 0)
+        {
+            GetComponent<FogController>().OnBuilding();
+        }
+
         // Destroy buildings test 
         // if (completedBuildingZones.Count >= 10)
         // {

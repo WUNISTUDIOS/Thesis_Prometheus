@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2124063915298695605}
   m_Layer: 0
-  m_Name: building_smoke_sat
+  m_Name: building_smoke_sat_origin_fix
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

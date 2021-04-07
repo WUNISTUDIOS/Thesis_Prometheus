@@ -3,7 +3,27 @@ guid: a9de4895605b4ef4ab68d104e7f1313a
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BASE_how low can you go
+    second: {fileID: 2100000, guid: 3a518e3c961f3bc439511dd9ae0c7004, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: fat_ring
+    second: {fileID: 2100000, guid: 562241f07cffbde4c91d26bb9b29d734, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: initial D
+    second: {fileID: 2100000, guid: a95ed07a58a2ed1439fccf77c3d3089e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small thingy
+    second: {fileID: 2100000, guid: a1b0a712ac63d794dbdd9440d98d1db0, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
