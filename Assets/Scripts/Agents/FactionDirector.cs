@@ -51,7 +51,7 @@ public class FactionDirector : MonoBehaviour
         }
 
 
-        // InvokeRepeating("Maintenence", 20f, 10f);
+        InvokeRepeating("Maintenence", 60f, 60f);
     }
 
     void CreateAgent()
