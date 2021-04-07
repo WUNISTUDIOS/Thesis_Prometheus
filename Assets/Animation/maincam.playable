@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8169270328579901688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90fb794a295e73545af71bcdb7375791, type: 3}
+  m_Name: CinemachineShot(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  DisplayName: 
+  VirtualCamera:
+    exposedName: 72b9e53163d56f54aaa69867c1f2d786
+    defaultValue: {fileID: 0}
 --- !u!114 &-7714941609655308569
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -213,7 +229,7 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: -1842321760600233367}
-    m_Duration: 85.16666666666666
+    m_Duration: 85.16666666666669
     m_TimeScale: 1
     m_ParentTrack: {fileID: 6798368209151938990}
     m_EaseInDuration: 0
@@ -222,25 +238,7 @@ MonoBehaviour:
     m_BlendOutDuration: 0
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -279,7 +277,7 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: high orbit cam
   - m_Version: 1
-    m_Start: 85.16666666666654
+    m_Start: 85.16666666666639
     m_ClipIn: 0
     m_Asset: {fileID: 9083727890097676618}
     m_Duration: 22.94999999999999
@@ -288,7 +286,7 @@ MonoBehaviour:
     m_EaseInDuration: 0
     m_EaseOutDuration: 5
     m_BlendInDuration: 0
-    m_BlendOutDuration: 0
+    m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
       m_Curve: []
@@ -330,7 +328,7 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: CM vcam4-low-orbit
   - m_Version: 1
-    m_Start: 108.11666666666648
+    m_Start: 108.1166666666664
     m_ClipIn: 0
     m_Asset: {fileID: -2765327286439849086}
     m_Duration: 16.583333333333314
@@ -338,8 +336,8 @@ MonoBehaviour:
     m_ParentTrack: {fileID: 6798368209151938990}
     m_EaseInDuration: 0
     m_EaseOutDuration: 5
-    m_BlendInDuration: 0
-    m_BlendOutDuration: -1
+    m_BlendInDuration: -1
+    m_BlendOutDuration: 0
     m_MixInCurve:
       serializedVersion: 2
       m_Curve: []
@@ -381,7 +379,7 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: still cam
   - m_Version: 1
-    m_Start: 124.69999999999986
+    m_Start: 124.69999999999968
     m_ClipIn: 0
     m_Asset: {fileID: 1372050649527867397}
     m_Duration: 21.383333333333354
@@ -389,7 +387,7 @@ MonoBehaviour:
     m_ParentTrack: {fileID: 6798368209151938990}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
-    m_BlendInDuration: -1
+    m_BlendInDuration: 0
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
@@ -414,7 +412,7 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: road cam
   - m_Version: 1
-    m_Start: 146.08333333333323
+    m_Start: 146.08333333333312
     m_ClipIn: 0
     m_Asset: {fileID: 6361979837869058653}
     m_Duration: 33.9666666666667
@@ -465,10 +463,10 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: CM vcam2
   - m_Version: 1
-    m_Start: 180.04999999999993
+    m_Start: 180.0499999999998
     m_ClipIn: 0
     m_Asset: {fileID: -7714941609655308569}
-    m_Duration: 60.88333333333333
+    m_Duration: 20.033333333333417
     m_TimeScale: 1
     m_ParentTrack: {fileID: 6798368209151938990}
     m_EaseInDuration: 0
@@ -533,6 +531,57 @@ MonoBehaviour:
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
     m_DisplayName: CM vcam3
+  - m_Version: 1
+    m_Start: 200.08333333333323
+    m_ClipIn: 0
+    m_Asset: {fileID: -8169270328579901688}
+    m_Duration: 60.43333333333342
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: 6798368209151938990}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 5
+    m_BlendInDuration: -1
+    m_BlendOutDuration: -1
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: CM vcam4-low-orbit
   m_Markers:
     m_Objects: []
 --- !u!114 &9083727890097676618
