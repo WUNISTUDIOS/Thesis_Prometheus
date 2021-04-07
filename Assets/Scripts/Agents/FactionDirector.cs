@@ -51,7 +51,7 @@ public class FactionDirector : MonoBehaviour
         }
 
 
-        InvokeRepeating("Maintenence", 60f, 60f);
+        InvokeRepeating("Maintenence", 60f, 120f);
     }
 
     void CreateAgent()
@@ -100,7 +100,7 @@ public class FactionDirector : MonoBehaviour
         // {
         //     PlaceNewBuildingZone();
         // }
-
+        //  && supplyZone.GetComponent<SupplyZone>().resourceObjects.Count > MaintenenceCost + 10 && agents.Count < 50
         if (supplyZone.GetComponent<SupplyZone>().resourceObjects.Count >= AgentBuildCost)
         {
             CreateAgent();
@@ -114,9 +114,9 @@ public class FactionDirector : MonoBehaviour
         if (agents.Count > PopulationSupported && buildingZones.Count == 0)
         {
             PlaceNewBuildingZone();
+
         }
 
-        // when to build buildings??? based on agent supply
     }
 
     public void PlaceNewBuildingZone()

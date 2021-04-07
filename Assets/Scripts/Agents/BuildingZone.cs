@@ -205,11 +205,11 @@ public class BuildingZone : MonoBehaviour
             Destroy(resource);
         }
 
-
+        Destroy(gameObject);
         // Uncomment to auto regen buildings after 30s
         // yield return new WaitForSeconds(30f);
-        built = false;
-        exploded = false;
+        // built = false;
+        // exploded = false;
 
     }
 
