@@ -13,12 +13,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: 056 large windows
-    second: {fileID: 2100000, guid: 0517ea1cef416884babec0436d9c845c, type: 2}
+    second: {fileID: 2100000, guid: f863868c2f7c7054591fd7dc0a91363d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: 056 top windows
-    second: {fileID: 2100000, guid: 51349f25bf502a649a8315477a7c6718, type: 2}
+    second: {fileID: 2100000, guid: f863868c2f7c7054591fd7dc0a91363d, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
