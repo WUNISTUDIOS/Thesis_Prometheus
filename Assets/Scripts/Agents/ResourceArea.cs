@@ -11,33 +11,24 @@ public class ResourceArea : MonoBehaviour
     public float respawnTime = 20f;
 
     public GameObject ResourcePrefab;
-    IEnumerator Start()
+    void Start()
     {
         for (int i = 0; i < resourcesInside; i++)
         {
-            yield return new WaitForSeconds(Random.Range(0f, 5f));
             SpawnResource();
         }
         StartCoroutine(PassiveResourceSpawn());
-    }
-    IEnumerator RandomlySpawnFive()
-    {
-        resourcesInside += 5;
-        SpawnResource();
-        yield return new WaitForSeconds(Random.Range(0f, 5f));
-        SpawnResource();
-        yield return new WaitForSeconds(Random.Range(0f, 5f));
-        SpawnResource();
-        yield return new WaitForSeconds(Random.Range(0f, 5f));
-        SpawnResource();
-        yield return new WaitForSeconds(Random.Range(0f, 5f));
-        SpawnResource();
     }
     IEnumerator PassiveResourceSpawn()
     {
 
         yield return new WaitForSeconds(30);
-        StartCoroutine(RandomlySpawnFive());
+        resourcesInside += 5;
+        SpawnResource();
+        SpawnResource();
+        SpawnResource();
+        SpawnResource();
+        SpawnResource();
         PassiveResourceSpawn();
     }
 
@@ -56,7 +47,12 @@ public class ResourceArea : MonoBehaviour
         {
 
             yield return new WaitForSeconds(respawnTime);
-            StartCoroutine(RandomlySpawnFive());
+            resourcesInside += 5;
+            SpawnResource();
+            SpawnResource();
+            SpawnResource();
+            SpawnResource();
+            SpawnResource();
         }
 
 
@@ -64,6 +60,10 @@ public class ResourceArea : MonoBehaviour
 
     public void feed()
     {
+        SpawnResource();
+        SpawnResource();
+        SpawnResource();
+        SpawnResource();
         SpawnResource();
     }
     private void SpawnResource()
