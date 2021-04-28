@@ -28,7 +28,7 @@ public class NavCollector : MonoBehaviour
 
 
 
-        StartCoroutine(TimeToDie());
+        // StartCoroutine(TimeToDie());
 
     }
 

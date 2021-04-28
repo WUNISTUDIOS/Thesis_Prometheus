@@ -91,12 +91,13 @@ public class FactionDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PopulationSupported = completedBuildingZones.Count * PerBuildingSupply;
+        AgentBuildCost = agents.Count * 2;
+        // PopulationSupported = completedBuildingZones.Count * PerBuildingSupply;
         UpdateBuildingList();
         OrderAgentsToBuildNext();
 
         // supplyZone.GetComponent<SupplyZone>().resourceObjects.Count > 30 && 
-        // if (supplyZone.GetComponent<SupplyZone>().resourceObjects.Count >= 20 && buildingZones.Count <= 0)
+        // if (supplyZone.GetComponent<SupplyZone>().resourceObjects.Count >= 10 && buildingZones.Count <= 3)
         // {
         //     PlaceNewBuildingZone();
         // }
@@ -111,7 +112,7 @@ public class FactionDirector : MonoBehaviour
 
         }
 
-        if (agents.Count > PopulationSupported && buildingZones.Count == 0)
+        if (agents.Count * 2 > buildingZones.Count + completedBuildingZones.Count)
         {
             PlaceNewBuildingZone();
 
